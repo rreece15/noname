@@ -16,15 +16,14 @@ public class randomSpawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        randomSpawn();
-        //Instantiate enemies?
+        spawn();
     }
 
-    void randomSpawn()
+    void spawn() //spawns randomly in a specific range from zero
     {
-        for(int i = 0; i < numFlags; i++)
+        for(int i = 0; i < numToSpawn; i++)
         {
-            Flags.Add(Instantiate(FlagPrefab, new Vector3(Random.Range(0, 50), 5, Random.Range(0, 50)), Quaternion.identity));
+            obs.Add(Instantiate(obPrefab, new Vector3(Random.Range(0, 50), 5, Random.Range(0, 50)), Quaternion.identity));
         }
     }
 }
