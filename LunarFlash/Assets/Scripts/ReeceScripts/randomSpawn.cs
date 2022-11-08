@@ -16,7 +16,7 @@ public class randomSpawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        randomSpawn
+        randomSpawn();
         //Instantiate enemies?
     }
 
