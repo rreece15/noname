@@ -5,6 +5,8 @@ using Cinemachine;
 using System;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.InputSystem.Processors;
+using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 //using TreeEditor;
 //using UnityEngine.Windows;
 
@@ -47,13 +49,25 @@ public class Player : MonoBehaviour
     [Header("ExplosionEffect")]
     public GameObject explosionEffect;
     //[Space]
-   // [Header("GameEnd")]
+    // [Header("GameEnd")]
     //public GameObject finishCanvas;
 
+    //CamSetting
+    Vector3 standardPos = new Vector3(0, 0, 3);
+    Vector3 standardPosWorld;
+    float newX;
+    float newY;
+    Vector3 newPos;
+    Vector3 mousePosition;
+    float mouseX;
+    float mouseY;
+    Vector3 calculatedMousePos;
+    Quaternion toRotation;
 
     // Start is called before the first frame update
     void Start()
     {
+        standardPosWorld= Camera.main.ScreenToWorldPoint(standardPos);
         attackable = true;
        // finishCanvas.SetActive(false);
         ammoChargeStart = false;
@@ -90,18 +104,30 @@ public class Player : MonoBehaviour
         }*/
 
     }
+    /*
+     * Screen.width 
+     * Screen.height 
+     * 
+     * 
+     */
 
     // Update is called once per frame
     void Update()
     {
-       
 
-       //Player rotates toward the mouse input
-        var newPos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 3f);
-        var mousePosition = Camera.main.ScreenToWorldPoint(newPos);
-        var mouse = new Vector3(mousePosition.x, this.gameObject.transform.position.y, mousePosition.z);
-        var toRotation = Quaternion.LookRotation(mouse-transform.position);
-       bulletDir = mouse; // - transform.position;
+    //Line 119 - 131 : Cam movement
+       newX= NormalizeProcessor.Normalize(Input.mousePosition.x, 0f, Screen.width, Screen.width/2);
+       newY = NormalizeProcessor.Normalize(Input.mousePosition.y, 0f, Screen.height, Screen.height/2);
+       newPos = new Vector3(newX * Screen.width, newY* Screen.height, 3f);// -width <x<width && -height < y < height
+       mousePosition = Camera.main.ScreenToWorldPoint(newPos);
+
+       mouseY = mousePosition.y - standardPosWorld.y;
+       mouseX = mousePosition.x - standardPosWorld.x;
+
+       calculatedMousePos = new Vector3(transform.position.x + mouseX, transform.position.y+ mouseY, mousePosition.z);
+
+       toRotation = Quaternion.LookRotation(calculatedMousePos - transform.position);
+       //bulletDir = mouse; // - transform.position;
         transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, camSpeed * Time.deltaTime);
         // bulletDir = transform.forward;
 
