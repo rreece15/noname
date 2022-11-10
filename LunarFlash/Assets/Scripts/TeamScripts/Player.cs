@@ -67,7 +67,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        standardPosWorld= Camera.main.ScreenToWorldPoint(standardPos);
+       
         attackable = true;
        // finishCanvas.SetActive(false);
         ammoChargeStart = false;
@@ -120,7 +120,7 @@ public class Player : MonoBehaviour
        newY = NormalizeProcessor.Normalize(Input.mousePosition.y, 0f, Screen.height, Screen.height/2);
        newPos = new Vector3(newX * Screen.width, newY* Screen.height, 3f);// -width <x<width && -height < y < height
        mousePosition = Camera.main.ScreenToWorldPoint(newPos);
-
+       standardPosWorld = Camera.main.ScreenToWorldPoint(standardPos);
        mouseY = mousePosition.y - standardPosWorld.y;
        mouseX = mousePosition.x - standardPosWorld.x;
 
