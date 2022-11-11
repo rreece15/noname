@@ -6,6 +6,7 @@ using System;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.InputSystem.Processors;
+using UnityEngine.InputSystem;
 using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 //using TreeEditor;
 //using UnityEngine.Windows;
@@ -72,8 +73,9 @@ public class Player : MonoBehaviour
        // finishCanvas.SetActive(false);
         ammoChargeStart = false;
         playerController = this.gameObject.GetComponent<CharacterController>();
-        Cursor.lockState = CursorLockMode.Confined;
-       // bulletPos = this.gameObject.transform.GetChild(0).gameObject.transform.position;
+        Cursor.lockState = CursorLockMode.Locked;
+        // Cursor.lockState = CursorLockMode.Confined;
+        // bulletPos = this.gameObject.transform.GetChild(0).gameObject.transform.position;
         maxAmmonQuant = 50;
         ammoQuant = maxAmmonQuant;
         ammoChargeTimer = ammoChargeTime;
@@ -114,22 +116,31 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+                        //Line 119 - 131 : Cam movement - 1111 - Wow.. I can set FirstPersonCam movement just chaning the cinemachine setting to POV!!!!!!ha..
+                        //Vector2 mouseDelta = Mouse.current.delta.ReadValue();
+                        //Vector3 mouseDelta = new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"), 3f);
+                        // Debug.Log(mouseDelta);
+                        // newX = NormalizeProcessor.Normalize(mouseDelta.x, 0f, Screen.width, Screen.width);
+                        // newY = NormalizeProcessor.Normalize(mouseDelta.y, 0f, Screen.height, Screen.height/2);
+                        //newX= NormalizeProcessor.Normalize(Input.mousePosition.x, 0f, Screen.width, Screen.width/2);
+                        // newY = NormalizeProcessor.Normalize(Input.mousePosition.y, 0f, Screen.height, Screen.height/2);
+                        //newPos = new Vector3(newX * Screen.width/2, newY* Screen.height/2, 3f);// -width <x<width && -height < y < height
+                        //  newPos = new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"), 3f);
+                        //Debug.Log(newPos);
+                        //mousePosition = Camera.main.ScreenToWorldPoint(newPos);
+                        // Debug.Log("MousePosition is " + mousePosition);
+                        //  standardPosWorld = Camera.main.ScreenToWorldPoint(standardPos);
+                        // mouseY = mousePosition.y - standardPosWorld.y;
+                        //mouseX = mousePosition.x - standardPosWorld.x;
 
-    //Line 119 - 131 : Cam movement
-       newX= NormalizeProcessor.Normalize(Input.mousePosition.x, 0f, Screen.width, Screen.width/2);
-       newY = NormalizeProcessor.Normalize(Input.mousePosition.y, 0f, Screen.height, Screen.height/2);
-       newPos = new Vector3(newX * Screen.width, newY* Screen.height, 3f);// -width <x<width && -height < y < height
-       mousePosition = Camera.main.ScreenToWorldPoint(newPos);
-       standardPosWorld = Camera.main.ScreenToWorldPoint(standardPos);
-       mouseY = mousePosition.y - standardPosWorld.y;
-       mouseX = mousePosition.x - standardPosWorld.x;
-
-       calculatedMousePos = new Vector3(transform.position.x + mouseX, transform.position.y+ mouseY, mousePosition.z);
-
-       toRotation = Quaternion.LookRotation(calculatedMousePos - transform.position);
-       //bulletDir = mouse; // - transform.position;
-        transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, camSpeed * Time.deltaTime);
-        // bulletDir = transform.forward;
+                        //calculatedMousePos = new Vector3(transform.position.x + mouseX, transform.position.y+ mouseY, mousePosition.z);
+                        //calculatedMousePos = new Vector3(transform.position.x/* + (mouseDelta.x* Screen.width)*/, transform.position.y /*+ (mouseDelta.y * Screen.height)*/, mousePosition.z);
+                        //toRotation = Quaternion.LookRotation(calculatedMousePos - transform.position);
+                        //bulletDir = mouse; // - transform.position;
+                        // transform.forward = transform.position+mouseDelta;//Quaternion.Slerp(transform.rotation, toRotation, camSpeed * Time.deltaTime);
+                        //transform.forward = calculatedMousePos;// - transform.position;
+                        //transform.LookAt(calculatedMousePos);// - transform.position);
+                        // bulletDir = transform.forward;
 
       /*  if (attackable == true)
         {
