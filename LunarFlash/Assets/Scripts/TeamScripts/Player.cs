@@ -138,7 +138,8 @@ public class Player : MonoBehaviour
                         //toRotation = Quaternion.LookRotation(calculatedMousePos - transform.position);
                         //bulletDir = mouse; // - transform.position;
                         // transform.forward = transform.position+mouseDelta;//Quaternion.Slerp(transform.rotation, toRotation, camSpeed * Time.deltaTime);
-                        //transform.forward = calculatedMousePos;// - transform.position;
+        transform.rotation = Quaternion.LookRotation(Camera.main.transform.forward, Camera.main.transform.up);
+                         // transform.forward = //calculatedMousePos;// - transform.position;
                         //transform.LookAt(calculatedMousePos);// - transform.position);
                         // bulletDir = transform.forward;
 
