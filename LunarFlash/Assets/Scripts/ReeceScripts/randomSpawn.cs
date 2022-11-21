@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class randomSpawn : MonoBehaviour
 {
-    int numToSpawn;
-    public GameObject obPrefab;
+    [SerializeField] private int numToSpawn;
+    [SerializeField] private GameObject obPrefab;
     private List<GameObject> obs = new List<GameObject>();
 
     private void Awake()
@@ -23,7 +23,7 @@ public class randomSpawn : MonoBehaviour
     {
         for(int i = 0; i < numToSpawn; i++)
         {
-            obs.Add(Instantiate(obPrefab, new Vector3(Random.Range(0, 50), 5, Random.Range(0, 50)), Quaternion.identity));
+            obs.Add(Instantiate(obPrefab, new Vector3(Random.Range(0, 1000), 5, Random.Range(0, 1000)), Quaternion.identity));
         }
     }
 }
