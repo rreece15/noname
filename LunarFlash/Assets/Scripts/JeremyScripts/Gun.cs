@@ -6,7 +6,7 @@ enum GunState
 {
     Idle,
     Shooting,
- 
+    //States for shooting the gun
 }
 
 public class Gun : MonoBehaviour
@@ -15,6 +15,10 @@ public class Gun : MonoBehaviour
     public float damage = 10f;
     public float gunRange = 100f;
     public float laserDuration = 0.05f;
+    public int maxAmmo = 25;
+    private int currentAmmo;
+    public float reloadTime = 2.5f;
+    private bool isReloading = false;
 
     public AudioSource shootSound;
     private GunState gunState;
@@ -33,6 +37,7 @@ public class Gun : MonoBehaviour
     {
         shootSound = GetComponent<AudioSource>();
         gunState = GunState.Idle;
+        currentAmmo = maxAmmo;
     }
 
     void Awake()
@@ -42,19 +47,21 @@ public class Gun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        switch (gunState)
+
+        /*switch (gunState)
         {
             case GunState.Idle:
                 if (Input.GetButtonDown("Fire1"))
                 {
                     StartShoot();
+                    //If "Fire1" input pressed, start shooting
                 }
                 break;
             case GunState.Shooting:
                 if (Input.GetButtonUp("Fire1"))
                 {
                     gunState = GunState.Idle;
+                    //If "Fire1" input not pressed, back to idle
                 }
                 break;
             default:
@@ -62,6 +69,24 @@ public class Gun : MonoBehaviour
                 
             
 
+        }*/
+
+        if (isReloading)
+        {
+            return;
+        }
+
+        if(currentAmmo <= 0 || Input.GetKeyDown(KeyCode.R))
+        {
+            StartCoroutine(Reload());
+            return;
+        }
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+            shootSound.Play();
+            muzzleFlash.Play();
+            Shoot();
         }
     }
 
@@ -71,10 +96,18 @@ public class Gun : MonoBehaviour
         gunState = GunState.Shooting;
     }
 
+    IEnumerator Reload()
+    {
+        isReloading = true;
+        Debug.Log("Reloading");
+        yield return new WaitForSeconds(reloadTime);
+        currentAmmo = maxAmmo;
+        isReloading = false;
+    }
     void Shoot()
     {
-        shootSound.Play();
-        muzzleFlash.Play();
+       
+        currentAmmo--;
 
         laserLine.SetPosition(0, laserOrigin.position);
         Vector3 rayOrigin = fpsCam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0));
