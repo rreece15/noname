@@ -20,6 +20,8 @@ public class Gun : MonoBehaviour
     public float reloadTime = 2.5f;
     private bool isReloading = false;
 
+    public Animator reloadAnimator;
+
     public AudioSource shootSound;
     private GunState gunState;
 
@@ -100,7 +102,14 @@ public class Gun : MonoBehaviour
     {
         isReloading = true;
         Debug.Log("Reloading");
-        yield return new WaitForSeconds(reloadTime);
+
+        reloadAnimator.SetBool("Reloading", true);
+
+        yield return new WaitForSeconds(reloadTime - .25f);
+
+        reloadAnimator.SetBool("Reloading", false);
+
+        yield return new WaitForSeconds(.25f);
         currentAmmo = maxAmmo;
         isReloading = false;
     }
