@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3815974134710234678}
   - component: {fileID: 3815974134710234679}
   - component: {fileID: 3815974134710234664}
+  - component: {fileID: 3394294797797179489}
   m_Layer: 0
   m_Name: Lunar
   m_TagString: Untagged
@@ -78,3 +79,21 @@ TerrainCollider:
   m_Enabled: 1
   m_TerrainData: {fileID: 15600000, guid: 968ce2d81193f46499c2cae2c141b221, type: 2}
   m_EnableTreeColliders: 1
+--- !u!114 &3394294797797179489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3815974134710234665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6defc0ec90493604687833d0a936aa77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  width: 1000
+  height: 1000
+  variation: 5
+  scale: 20
+  xOffset: 50
+  yOffset: 50
