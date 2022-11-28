@@ -6,17 +6,23 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    [Header("Canvas Setting")]
     // Canvas objects and controls
     [SerializeField] private Canvas options;
     [SerializeField] private Canvas optionsOpen;
     [SerializeField] private Button openOptions;
     [SerializeField] private Button closeOptions;
     [SerializeField] private Canvas playerCanvas;
-
+    [Space]
+    [Header("Inventory Setting")]
+    [SerializeField] private Canvas InventoryShortcutCanvas;
+    [SerializeField] private Canvas InventoryWholeCanvas;
+    [Space]
+    [Header("Resolution Setting")]
     // Screen Resolution
     [SerializeField] private TMP_Dropdown resolutionDropdown;
     Resolution[] resolutions;
-
+    [Header("Volume Setting")]
     // Volume
     [SerializeField] private Slider volumeSlider;
     [SerializeField] private TMP_Text volumeText;
@@ -28,6 +34,9 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        InventoryWholeCanvas.GetComponent<Canvas>().enabled = false;
+       
         optionsOpen.GetComponent<Canvas>().enabled = false;
         
         closeOptions.onClick.AddListener(() => CloseOptions());
@@ -57,6 +66,15 @@ public class UIManager : MonoBehaviour
         {
             OpenOptions();
         }
+
+        if (Input.GetKey(KeyCode.E))
+        {
+            OpenWholeInventory();
+        }
+        if (Input.GetKeyUp(KeyCode.E))
+        {
+            CloseWholeInventory();
+        }
     }
 
     void OpenOptions()
@@ -66,6 +84,21 @@ public class UIManager : MonoBehaviour
         optionsOpen.GetComponent<Canvas>().enabled = true;
         playerCanvas.GetComponent<Canvas>().enabled = false;
         Cursor.lockState = CursorLockMode.Confined;
+    }
+
+    void OpenWholeInventory()
+    {
+        // Time.timeScale = 0;
+        InventoryWholeCanvas.GetComponent<Canvas>().enabled = true;
+       // optionsOpen.GetComponent<Canvas>().enabled = true;
+       // playerCanvas.GetComponent<Canvas>().enabled = false;
+        Cursor.lockState = CursorLockMode.Confined;
+    }
+
+    void CloseWholeInventory()
+    {
+        InventoryWholeCanvas.GetComponent<Canvas>().enabled = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void CloseOptions()

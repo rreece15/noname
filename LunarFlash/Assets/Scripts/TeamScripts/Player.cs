@@ -246,6 +246,12 @@ public class Player : MonoBehaviour
            // HPcanvas.SetActive(false);
            // finishCanvas.SetActive(true);
         }
+       if(other.gameObject.tag == "Item")
+        {
+            InventoryManager.GetItemInfo(other.gameObject);
+            InventoryManager.UpdateInventory();
+            Destroy(other.gameObject);
+        }
     }
 
     public void ExplosionEffect()
