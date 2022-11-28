@@ -7,6 +7,7 @@ public class DayTimer : MonoBehaviour
     public GameObject directionalLightObj;
     private Light directionalLight;
     [SerializeField] private float dayLength;
+    private bool daytime;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +17,21 @@ public class DayTimer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        directionalLight.intensity = Mathf.Max((Mathf.Abs(Mathf.Sin(dayLength * Time.time))), (float)0.05);
+        float nextVal = Mathf.Max((Mathf.Abs(Mathf.Sin(dayLength * Time.time))), (float)0.05);
+        directionalLight.intensity = nextVal;
+        if(nextVal > 0.5)
+        {
+            daytime = true;
+        }
+        else
+        {
+            daytime = false;
+        }
+    }
+
+    public bool isDay()
+    {
+        Debug.Log(daytime);
+        return daytime;
     }
 }

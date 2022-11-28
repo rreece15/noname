@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
+using Unity.AI.Navigation;
 
 public class Landscape : MonoBehaviour
 {
@@ -14,12 +16,17 @@ public class Landscape : MonoBehaviour
     public float xOffset;
     public float yOffset;
 
+    public NavMeshSurface surface;
+    bool terrainDone;
+
     // Start is called before the first frame update
     void Start()
     {
+        terrainDone = false;
         xOffset = Random.Range(0f, 999f);
         yOffset = Random.Range(0f, 999f);
         makeTerrain();
+        surface = gameObject.GetComponent<NavMeshSurface>();
     }
 
     // Update is called once per frame
@@ -28,10 +35,12 @@ public class Landscape : MonoBehaviour
         
     }
 
-    void makeTerrain()
+    public void makeTerrain()
     {
         Terrain terrain = GetComponent<Terrain>();
         terrain.terrainData = TerrainMaker(terrain.terrainData);
+        terrainDone = true;
+        surface.BuildNavMesh();
     }
 
     TerrainData TerrainMaker(TerrainData terrainData)
@@ -53,5 +62,10 @@ public class Landscape : MonoBehaviour
             }
         }
         return heights;
+    }
+
+    public bool getDone()
+    {
+        return terrainDone;
     }
 }

@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: d19046157a583804aad4d7ce9b8d1606, type: 2}
+  m_NavMeshData: {fileID: 0}
 --- !u!1 &20258010
 GameObject:
   m_ObjectHideFlags: 0
@@ -868,6 +868,42 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 249939108}
   m_CullTransparentMesh: 1
+--- !u!1 &256229580 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3815974134710234665, guid: aad4f50a5dfa4e74397ec8f3bb2f2166,
+    type: 3}
+  m_PrefabInstance: {fileID: 3815974132786281895}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &256229585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 256229580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.16666667
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 0}
+  m_BuildHeightMesh: 0
 --- !u!1 &288667823 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5792732486625663260, guid: 4e7afdf31c20ebf419ea38bf1d358719,
@@ -1411,7 +1447,7 @@ GameObject:
   - component: {fileID: 410087043}
   m_Layer: 0
   m_Name: Directional Light
-  m_TagString: Untagged
+  m_TagString: timer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2612,6 +2648,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a049fed58fc2d649a9310cb44ab8a1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numEnemies: 1
+  EnemyPrefab: {fileID: 1508318930}
 --- !u!4 &1012433209
 Transform:
   m_ObjectHideFlags: 0
@@ -4597,13 +4635,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3394294797797179489, guid: aad4f50a5dfa4e74397ec8f3bb2f2166,
         type: 3}
+      propertyPath: surface
+      value: 
+      objectReference: {fileID: 256229585}
+    - target: {fileID: 3394294797797179489, guid: aad4f50a5dfa4e74397ec8f3bb2f2166,
+        type: 3}
       propertyPath: variation
-      value: 50
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3815974134710234665, guid: aad4f50a5dfa4e74397ec8f3bb2f2166,
         type: 3}
       propertyPath: m_Name
       value: Lunar
+      objectReference: {fileID: 0}
+    - target: {fileID: 3815974134710234665, guid: aad4f50a5dfa4e74397ec8f3bb2f2166,
+        type: 3}
+      propertyPath: m_TagString
+      value: Landscape
       objectReference: {fileID: 0}
     - target: {fileID: 3815974134710234678, guid: aad4f50a5dfa4e74397ec8f3bb2f2166,
         type: 3}
