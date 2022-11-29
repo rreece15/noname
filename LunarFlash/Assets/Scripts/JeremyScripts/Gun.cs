@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 enum GunState
 {
@@ -11,6 +12,9 @@ enum GunState
 
 public class Gun : MonoBehaviour
 {
+
+    public TMP_Text currnentAmmo;
+    public TMP_Text totalAmmo;
 
     public float damage = 10f;
     public float gunRange = 100f;
@@ -40,6 +44,9 @@ public class Gun : MonoBehaviour
         shootSound = GetComponent<AudioSource>();
         gunState = GunState.Idle;
         currentAmmo = maxAmmo;
+
+        currnentAmmo.text = currentAmmo.ToString();
+        totalAmmo.text = maxAmmo.ToString();
     }
 
     void Awake()
@@ -89,6 +96,7 @@ public class Gun : MonoBehaviour
             shootSound.Play();
             muzzleFlash.Play();
             Shoot();
+            currnentAmmo.text = currentAmmo.ToString();
         }
     }
 
