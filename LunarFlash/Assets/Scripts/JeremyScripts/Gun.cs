@@ -13,7 +13,7 @@ enum GunState
 public class Gun : MonoBehaviour
 {
 
-    public TMP_Text currnentAmmo;
+    public TMP_Text currnent;
     public TMP_Text totalAmmo;
 
     public float damage = 10f;
@@ -45,7 +45,7 @@ public class Gun : MonoBehaviour
         gunState = GunState.Idle;
         currentAmmo = maxAmmo;
 
-        currnentAmmo.text = currentAmmo.ToString();
+        currnent.text = currentAmmo.ToString();
         totalAmmo.text = maxAmmo.ToString();
     }
 
@@ -88,6 +88,7 @@ public class Gun : MonoBehaviour
         if(currentAmmo <= 0 || Input.GetKeyDown(KeyCode.R))
         {
             StartCoroutine(Reload());
+            currnent.text = maxAmmo.ToString();
             return;
         }
 
@@ -96,7 +97,7 @@ public class Gun : MonoBehaviour
             shootSound.Play();
             muzzleFlash.Play();
             Shoot();
-            currnentAmmo.text = currentAmmo.ToString();
+            currnent.text = currentAmmo.ToString();
         }
     }
 
