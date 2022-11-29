@@ -4123,6 +4123,11 @@ PrefabInstance:
       objectReference: {fileID: 100002, guid: 99c73c92ac40473459640b165473206f, type: 3}
     - target: {fileID: 265882515306586399, guid: 41b1d76103ebf8140a7593005af18984,
         type: 3}
+      propertyPath: currnent
+      value: 
+      objectReference: {fileID: 559879245}
+    - target: {fileID: 265882515306586399, guid: 41b1d76103ebf8140a7593005af18984,
+        type: 3}
       propertyPath: totalAmmo
       value: 
       objectReference: {fileID: 1780273686}
