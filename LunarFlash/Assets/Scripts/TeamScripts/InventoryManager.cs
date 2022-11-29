@@ -213,6 +213,11 @@ public class InventoryManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKey(KeyCode.Keypad1))
+        {
+            // get what the item is ??? how can I do this????????????????????
+           // decrease the count of that item--;
+           // apply the effect of the item to the game...
+        }
     }
 }
