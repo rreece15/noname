@@ -25,11 +25,12 @@ public class Damage : MonoBehaviour
     }
     IEnumerator Damaging()
     {
-        GameManager.Instance.playerHealth--;
-        GameManager.Instance.playerHealth--;
-        GameManager.Instance.playerHealth--;
-        GameManager.Instance.playerHealth--;
-        GameManager.Instance.playerHealth--;
+        //GameManager.Instance.playerHealth--;
+        // GameManager.Instance.playerHealth--;
+        // GameManager.Instance.playerHealth--;
+        // GameManager.Instance.playerHealth--;
+        // GameManager.Instance.playerHealth--;
+        GameManager.Instance.playerScript.DecreasePlayerHP(5);
         yield return new WaitForSeconds(1);
         damageReady = true;
     }

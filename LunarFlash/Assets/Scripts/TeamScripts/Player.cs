@@ -189,6 +189,14 @@ public class Player : MonoBehaviour
     {
         return playerHP;
     }
+
+    /*public float DamagePlayerHP(int damage)
+    {
+        playerHP -= damage;
+        playerHP_text.text = playerHP.ToString();
+        playerHP_bar.value = playerHP;
+        return playerHP;
+    }*/
    
 
 }

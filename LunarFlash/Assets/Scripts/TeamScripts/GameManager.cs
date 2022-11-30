@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     public GameObject EnemyPrefab;
     AudioSource gmAudio;
     private bool waiting;
-    Player playerScript;
+    public Player playerScript;
     // Start is called before the first frame update
     void Start()
     {
@@ -71,4 +71,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public float GetPlayerHPInfo()
+    {
+        return playerScript.GetPlayerHP();
+    }
 }
