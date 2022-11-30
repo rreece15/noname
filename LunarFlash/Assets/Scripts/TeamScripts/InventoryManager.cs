@@ -214,7 +214,7 @@ public class InventoryManager : MonoBehaviour
         }
 
         //isShortCutFull = true;
-        Debug.Log("isShortCutFull is : " + isShortCutFull);
+        //Debug.Log("isShortCutFull is : " + isShortCutFull);
         return isShortCutFull;
     }
 

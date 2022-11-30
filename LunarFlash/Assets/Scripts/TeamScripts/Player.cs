@@ -18,12 +18,13 @@ public class Player : MonoBehaviour
     [Space]
     [Header("Movement")]
     CharacterController playerController;
-    private float jumpHeight = 5.0f;  //UnityAPI : https://docs.unity3d.com/ScriptReference/CharacterController.Move.html
-    private float gravityValue = -9.81f;
+    private float jumpHeight = 8.0f;  //UnityAPI : https://docs.unity3d.com/ScriptReference/CharacterController.Move.html
+    private float gravityValue = -12;//-9.81f;
     private Vector3 playerVelocity;
     private bool groundedPlayer;
     public float movingSpeed;
     public float camSpeed = 2;
+    public float heightchange = 0.02f;
     [Space]
     [Header("PayerCanvasSetting")]
     public GameObject HPcanvas;
@@ -37,18 +38,23 @@ public class Player : MonoBehaviour
     public AudioClip inventoryFull;
     AudioSource playerAudioSource;
 
+    private Vector3 playerCurrentPos;
+    float maxHeight = 2.25f;
+    bool heightIncrease;
+    float minHeight = 1.75f;
+    bool heightDecrease;
     // Start is called before the first frame update
     void Start()
     {
 
-        this.gameObject.transform.position = new Vector3(380f, 20, 586);
+        this.gameObject.transform.position = new Vector3(380f, 6, 586);
        
         playerController = this.gameObject.GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
 
         playerAudioSource = this.gameObject.GetComponent<AudioSource>();
 
-
+        movingSpeed = 8;
         if (playerHP_text == null)
         {
             playerHP_text = HPcanvas.transform.GetChild(2).gameObject.GetComponent<TMP_Text>();
@@ -62,13 +68,14 @@ public class Player : MonoBehaviour
             playerHP_bar.value = playerHP;
         }
 
-       
+        heightIncrease = true;
+        heightDecrease = false;
+
     }
   
     // Update is called once per frame
     void Update()
     {
-                       
         transform.rotation = Quaternion.LookRotation(Camera.main.transform.forward, Camera.main.transform.up);
                        
         groundedPlayer = playerController.isGrounded;
@@ -87,15 +94,22 @@ public class Player : MonoBehaviour
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
         }
 
-        playerVelocity.y += gravityValue * Time.deltaTime;
+        playerVelocity.y += (gravityValue*1.5f) * Time.deltaTime;
         playerController.Move(playerVelocity * Time.deltaTime);
+
+        if(playerHP == 0)
+        {
+            //GAmeOver
+        }
 
     }
 
 
-    public void UpdatePlayerHP(int itemORenemyAttack) // HPpotion - positive number && EnemyAttack - negative number
+    public void DecreasePlayerHP(int enemyAttack) // HPpotion - positive number && EnemyAttack - negative number
     {
-        playerHP += itemORenemyAttack;
+        playerHP -= enemyAttack;
+
+        if(playerHP <= 0) { playerHP = 0; }
         playerHP_text.text = playerHP.ToString();
         playerHP_bar.value = playerHP;
     }
@@ -111,23 +125,8 @@ public class Player : MonoBehaviour
         playerHP_bar.value = playerHP;
     }
 
-    public void UpdateAmmoStatus()
-    {
-        //Ammo_text.text = ammoQuant.ToString();
-       // Ammo_bar.value = ammoQuant;
-    }
-
-
     private void OnTriggerEnter(Collider other)
     {
-       
-       if(other.gameObject.tag == "Finish")
-        {
-          //  attackable = false;
-           // AmmoCanvas.SetActive(false);
-           // HPcanvas.SetActive(false);
-           // finishCanvas.SetActive(true);
-        }
        if(other.gameObject.tag == "Item")
         {
             if (InventoryManager.isInventoryLocked == false)
