@@ -200,7 +200,7 @@ public class InventoryManager : MonoBehaviour
     {
         for(int i = 0; i < shortCutItem.Length; i++)
         {
-            if (shortCutItem[i].transform.GetChild(0).GetComponent<RawImage>().texture == null)
+            if (shortCutItem[i].GetComponent<InventorySlot>().isFullStatus()==false)//(shortCutItem[i].transform.GetChild(0).GetComponent<RawImage>().texture == null)
             {
                 isShortCutFull = false;
                 //return isShortCutFull;
@@ -382,7 +382,7 @@ public class InventoryManager : MonoBehaviour
                 firstItemcount--;
                 UpdateItemCount(itemInSlot, firstItemcount);
                 
-                gunScript.GunDamageUpgradeExecution(0.3f, 3);
+                gunScript.GunDamageUpgradeExecution(0.5f, 3);
 
             }
             else if (i == 1 && secondItemcount > 0)
@@ -390,7 +390,7 @@ public class InventoryManager : MonoBehaviour
                secondItemcount--;
                 UpdateItemCount(itemInSlot, secondItemcount);
                 
-                gunScript.GunDamageUpgradeExecution(0.3f, 3);
+                gunScript.GunDamageUpgradeExecution(0.5f, 3);
 
             }
             else if (i == 2 && thirdItemcount > 0)
@@ -398,7 +398,7 @@ public class InventoryManager : MonoBehaviour
                 thirdItemcount--;
                 UpdateItemCount(itemInSlot, thirdItemcount);
                 
-                gunScript.GunDamageUpgradeExecution(0.3f, 3);
+                gunScript.GunDamageUpgradeExecution(0.5f, 3);
 
             }
         }
