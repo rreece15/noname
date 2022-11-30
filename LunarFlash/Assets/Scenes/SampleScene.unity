@@ -1173,6 +1173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numEnemies: 0
+  score: 0
   EnemyPrefab: {fileID: 0}
 --- !u!4 &1012433209
 Transform:
@@ -1994,7 +1995,7 @@ GameObject:
   - component: {fileID: 1947849052}
   - component: {fileID: 1947849051}
   - component: {fileID: 1947849050}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
