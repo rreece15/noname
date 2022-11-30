@@ -8,6 +8,7 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem.Processors;
 using UnityEngine.InputSystem;
 using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
+using Unity.VisualScripting;
 //using TreeEditor;
 //using UnityEngine.Windows;
 
@@ -25,6 +26,7 @@ public class Player : MonoBehaviour
     public float movingSpeed;
     public float camSpeed = 2;
     public float heightchange = 0.02f;
+    public GameObject dashUI;
     [Space]
     [Header("PayerCanvasSetting")]
     public GameObject HPcanvas;
@@ -36,6 +38,7 @@ public class Player : MonoBehaviour
     [Space]
     [Header("SFXs")]
     public AudioClip inventoryFull;
+    public AudioClip dashSound;
     AudioSource playerAudioSource;
 
     private Vector3 playerCurrentPos;
@@ -43,12 +46,15 @@ public class Player : MonoBehaviour
     bool heightIncrease;
     float minHeight = 1.75f;
     bool heightDecrease;
+    float defaultMovingSpeed;
+    bool isDashOn = false;
 
     public static bool isGameOver=false;
     public static bool isGameClear = false;
     // Start is called before the first frame update
     void Start()
     {
+        defaultMovingSpeed = movingSpeed;
         isGameOver = false;
         isGameClear = false;
         this.gameObject.transform.position = new Vector3(380f, 6, 586);
@@ -90,7 +96,19 @@ public class Player : MonoBehaviour
       
         playerController.Move((transform.forward * Input.GetAxis("Vertical")) * Time.deltaTime * movingSpeed);
         playerController.Move((transform.right * Input.GetAxis("Horizontal")) * Time.deltaTime * movingSpeed);
-     
+
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            if (isDashOn == false)
+            {
+                StartCoroutine(DashMovement());
+            }
+        }
+
+       /* if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            isDashOn = false;
+        }*/
 
         // Changes the height position of the player..
         if (Input.GetButtonDown("Jump") && groundedPlayer) // from this API too https://docs.unity3d.com/ScriptReference/CharacterController.Move.html
@@ -109,6 +127,23 @@ public class Player : MonoBehaviour
             Time.timeScale = 0;
         }
 
+    }
+
+    IEnumerator DashMovement()
+    {
+        playerAudioSource.clip = dashSound;
+        playerAudioSource.Play();
+        dashUI.transform.GetChild(0).GetComponent<RawImage>().color = new Color(1, 1, 1, 0.2f);
+        isDashOn = true;
+        movingSpeed *= 5;
+
+        yield return new WaitForSeconds(2f);
+
+        movingSpeed = defaultMovingSpeed;
+
+        yield return new WaitForSeconds(8f);
+        isDashOn = false;
+        dashUI.transform.GetChild(0).GetComponent<RawImage>().color = new Color(1, 1, 1, 1);
     }
 
 
