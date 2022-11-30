@@ -10,11 +10,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] int numEnemies;
     public int score;
     public int enemyHealth;
-    public int playerHealth;
+    // public int playerHealth;  PLEASE USE playerScript.GetPlayerHP(); method to get playerHP value! 
     List<GameObject> enemies = new List<GameObject>();
     public GameObject EnemyPrefab;
     AudioSource gmAudio;
     private bool waiting;
+    Player playerScript;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +24,11 @@ public class GameManager : MonoBehaviour
         waiting = false;
         gmAudio = this.GetComponent<AudioSource>();
         //gmAudio.Play();
+
+        if (playerScript == null)
+        {
+            playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>() ;
+        }
     }
 
     // Update is called once per frame

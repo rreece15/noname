@@ -185,7 +185,10 @@ public class Player : MonoBehaviour
         }
     }
 
-
+    public float GetPlayerHP()
+    {
+        return playerHP;
+    }
    
 
 }
