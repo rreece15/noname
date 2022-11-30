@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] int numEnemies;
     List<GameObject> enemies = new List<GameObject>();
     public GameObject EnemyPrefab;
-
+    AudioSource gmAudio;
     private bool waiting;
     // Start is called before the first frame update
     void Start()
@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
         GameObject.FindGameObjectsWithTag("Landscape")[0].GetComponent<Landscape>().makeTerrain();
         //SpawnEnemies();
         waiting = false;
+        gmAudio = this.GetComponent<AudioSource>();
+        //gmAudio.Play();
     }
 
     // Update is called once per frame
