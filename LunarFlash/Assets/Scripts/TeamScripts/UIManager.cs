@@ -17,6 +17,7 @@ public class UIManager : MonoBehaviour
     [Header("Inventory Setting")]
     [SerializeField] private Canvas InventoryShortcutCanvas;
     //[SerializeField] private Canvas InventoryWholeCanvas;
+    GameObject inventoryFullUI;
     [Space]
     [Header("Resolution Setting")]
     // Screen Resolution
@@ -28,6 +29,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TMP_Text volumeText;
     float volume;
 
+    static public bool inventoryFullUION=false;
+    static public bool inventoryFullUIOFF = false;
     // score
     private int currentScore;
 
@@ -36,7 +39,11 @@ public class UIManager : MonoBehaviour
     {
 
         InventoryShortcutCanvas.GetComponent<Canvas>().enabled = false;
-       
+        inventoryFullUI = InventoryShortcutCanvas.transform.GetChild(1).gameObject;
+        inventoryFullUI.transform.localScale = new Vector3(0, 1, 1);
+        //inventoryFulUI.SetActive(false);
+
+
         optionsOpen.GetComponent<Canvas>().enabled = false;
         
         closeOptions.onClick.AddListener(() => CloseOptions());
@@ -74,6 +81,19 @@ public class UIManager : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.E))
         {
             CloseWholeInventory();
+        }
+
+        if (inventoryFullUION == true && inventoryFullUIOFF==false)
+        {
+            //inventoryFullUI.SetActive(true);
+            inventoryFullUI.transform.localScale = new Vector3(1, 1, 1);
+            inventoryFullUION = false;
+        }
+        if (inventoryFullUION == false && inventoryFullUIOFF == true)
+        {
+            // inventoryFullUI.SetActive(false);
+            inventoryFullUI.transform.localScale = new Vector3(0, 1, 1);
+            inventoryFullUIOFF = false;
         }
     }
 

@@ -13,6 +13,7 @@ public class InventoryManager : MonoBehaviour
   
     public static InventoryManager IMInstance { get; private set; }
     public static string collectedItemName;
+    public static bool isInventoryLocked = false;  // this is for deciding whether a player can collect a new item or not
     [Header("ItemInfoList")]
     public  Potion potionItemInfo;
     public AmmoItem basicAmmo;
@@ -63,7 +64,7 @@ public class InventoryManager : MonoBehaviour
         {
             IMInstance.UpdateShortCutInventory();
         }
-        else
+       /* else
         {
             Debug.Log("ShortCut Inventory is FULL");
             if (IMInstance.CheckWholeIsFull() == false)
@@ -75,7 +76,7 @@ public class InventoryManager : MonoBehaviour
                 Debug.Log("Full Inventory is FULL");
             }
 
-        }
+        }*/
         //if shortcut is NOT full
         // && if this is a new item, 
         // 1) Add an item image to the raw image
@@ -250,8 +251,14 @@ public class InventoryManager : MonoBehaviour
             playerInstance = GameObject.FindGameObjectWithTag("Player");
         }
 
-       // shortCutItem = new GameObject[3];
-       // wholeItem = new GameObject[15];
+        // shortCutItem = new GameObject[3];
+        // wholeItem = new GameObject[15];
+
+        if (CheckShortCutIsFull() == true)
+        {
+            isInventoryLocked = true;
+            UIManager.inventoryFullUION = true;
+        }
     }
 
     // Update is called once per frame
@@ -279,8 +286,17 @@ public class InventoryManager : MonoBehaviour
                 Debug.Log("3 is pressed");
             }
         }
+
+
+        if (CheckShortCutIsFull() == true)
+        {
+            isInventoryLocked = true;
+            UIManager.inventoryFullUION = true;
+        }
     }
 
+
+   
 
     public void UseItem(GameObject itemInSlot, int i)
     {
@@ -402,6 +418,9 @@ public class InventoryManager : MonoBehaviour
             item.transform.GetChild(0).GetComponent<RawImage>().texture = null;
             item.transform.GetChild(1).GetComponent<TMP_Text>().text = "0";// count.ToString();
             item.GetComponent<InventorySlot>().GetsEmptied();
+            isInventoryLocked = false;
+            UIManager.inventoryFullUIOFF = true;
+            UIManager.inventoryFullUION = false;
         }
     }
 }

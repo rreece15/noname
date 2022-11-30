@@ -32,6 +32,10 @@ public class Player : MonoBehaviour
     public GameObject AmmoCanvas;
     public TMP_Text Ammo_Total;
     public TMP_Text Ammo_Current;
+    [Space]
+    [Header("SFXs")]
+    public AudioClip inventoryFull;
+    AudioSource playerAudioSource;
 
     // Start is called before the first frame update
     void Start()
@@ -41,8 +45,10 @@ public class Player : MonoBehaviour
        
         playerController = this.gameObject.GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
-      
-      
+
+        playerAudioSource = this.gameObject.GetComponent<AudioSource>();
+
+
         if (playerHP_text == null)
         {
             playerHP_text = HPcanvas.transform.GetChild(2).gameObject.GetComponent<TMP_Text>();
@@ -124,9 +130,17 @@ public class Player : MonoBehaviour
         }
        if(other.gameObject.tag == "Item")
         {
-            InventoryManager.GetItemInfo(other.gameObject);
-            InventoryManager.UpdateInventory();
-            Destroy(other.gameObject);
+            if (InventoryManager.isInventoryLocked == false)
+            {
+                InventoryManager.GetItemInfo(other.gameObject);
+                InventoryManager.UpdateInventory();
+                Destroy(other.gameObject);
+            }
+            else
+            {
+                playerAudioSource.clip = inventoryFull;
+                playerAudioSource.Play();
+            }
         }
     }
 
