@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     [SerializeField] int numEnemies;
+    public int score;
     List<GameObject> enemies = new List<GameObject>();
     public GameObject EnemyPrefab;
 
