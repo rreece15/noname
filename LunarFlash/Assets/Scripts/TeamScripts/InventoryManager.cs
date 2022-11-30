@@ -204,7 +204,7 @@ public class InventoryManager : MonoBehaviour
             {
                 isShortCutFull = false;
                 //return isShortCutFull;
-                //break;
+                break;
             }
             else
             {
@@ -413,6 +413,7 @@ public class InventoryManager : MonoBehaviour
         }
         else if (count == 0)
         {
+            isShortCutFull = false;
             count = -1;
             item.transform.GetChild(0).GetComponent<RawImage>().color = new Color(1.000f, 1.000f, 1.000f, 0.176f); ;
             item.transform.GetChild(0).GetComponent<RawImage>().texture = null;
