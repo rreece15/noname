@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] int numEnemies;
     public int score;
+    public int enemyHealth;
+    public int playerHealth;
     List<GameObject> enemies = new List<GameObject>();
     public GameObject EnemyPrefab;
     AudioSource gmAudio;
