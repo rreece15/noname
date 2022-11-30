@@ -43,10 +43,14 @@ public class Player : MonoBehaviour
     bool heightIncrease;
     float minHeight = 1.75f;
     bool heightDecrease;
+
+    public static bool isGameOver=false;
+    public static bool isGameClear = false;
     // Start is called before the first frame update
     void Start()
     {
-
+        isGameOver = false;
+        isGameClear = false;
         this.gameObject.transform.position = new Vector3(380f, 6, 586);
        
         playerController = this.gameObject.GetComponent<CharacterController>();
@@ -100,6 +104,9 @@ public class Player : MonoBehaviour
         if(playerHP == 0)
         {
             //GAmeOver
+            playerHP = -1;
+            isGameOver = true;
+            Time.timeScale = 0;
         }
 
     }

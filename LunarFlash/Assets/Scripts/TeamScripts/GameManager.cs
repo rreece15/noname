@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class GameManager : MonoBehaviour
     public int score;
     List<GameObject> enemies = new List<GameObject>();
     public GameObject EnemyPrefab;
-
+    AudioSource gmAudio;
     private bool waiting;
     // Start is called before the first frame update
     void Start()
@@ -18,6 +19,8 @@ public class GameManager : MonoBehaviour
         GameObject.FindGameObjectsWithTag("Landscape")[0].GetComponent<Landscape>().makeTerrain();
         //SpawnEnemies();
         waiting = false;
+        gmAudio = this.GetComponent<AudioSource>();
+        //gmAudio.Play();
     }
 
     // Update is called once per frame
@@ -31,6 +34,8 @@ public class GameManager : MonoBehaviour
             SpawnEnemy();
             StartCoroutine(waiter());
         }
+
+        /////////////////when players clear all enemy waves - then Player.isGameClear = true
     }
 
     IEnumerator waiter()
@@ -57,4 +62,5 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
 }
