@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Button openOptions;
     [SerializeField] private Button closeOptions;
     [SerializeField] private Canvas playerCanvas;
+    [SerializeField] private Canvas GameOverWinCanvas;
     [Space]
     [Header("Inventory Setting")]
     [SerializeField] private Canvas InventoryShortcutCanvas;
@@ -42,6 +44,9 @@ public class UIManager : MonoBehaviour
         inventoryFullUI = InventoryShortcutCanvas.transform.GetChild(1).gameObject;
         inventoryFullUI.transform.localScale = new Vector3(0, 1, 1);
         //inventoryFulUI.SetActive(false);
+
+        //GameOverMenu
+        GameOverWinCanvas.enabled = false;
 
 
         optionsOpen.GetComponent<Canvas>().enabled = false;
@@ -94,6 +99,16 @@ public class UIManager : MonoBehaviour
             // inventoryFullUI.SetActive(false);
             inventoryFullUI.transform.localScale = new Vector3(0, 1, 1);
             inventoryFullUIOFF = false;
+        }
+
+        if (Player.isGameOver)
+        {
+            OpenGameOverMenu();
+        }
+
+        if (Player.isGameClear)
+        {
+            OpenGameWinMenu();
         }
     }
 
@@ -152,5 +167,37 @@ public class UIManager : MonoBehaviour
         // for storing JSON
         //playerPrefs.volume = newVolume;
         volumeSlider.value = newVolume;
+    }
+
+    void OpenGameOverMenu()
+    {
+        GameOverWinCanvas.enabled = true;
+        GameOverWinCanvas.gameObject.transform.GetChild(1).GetComponent<TMP_Text>().enabled = true;
+        GameOverWinCanvas.gameObject.transform.GetChild(2).GetComponent<TMP_Text>().enabled = false;
+        Time.timeScale = 1;
+    }
+
+    void OpenGameWinMenu()
+    {
+        GameOverWinCanvas.enabled = true;
+        GameOverWinCanvas.gameObject.transform.GetChild(1).GetComponent<TMP_Text>().enabled = false;
+        GameOverWinCanvas.gameObject.transform.GetChild(2).GetComponent<TMP_Text>().enabled = true;
+        Time.timeScale = 1;
+    }
+
+
+
+
+    //////////////////////////////////Button click functions///////////////////////////////
+    ///
+
+    public void ReplayButtonClick()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void QuitButtonClick()
+    {
+        Application.Quit();
     }
 }

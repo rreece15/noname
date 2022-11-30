@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -30,6 +31,8 @@ public class GameManager : MonoBehaviour
             SpawnEnemy();
             StartCoroutine(waiter());
         }
+
+        /////////////////when players clear all enemy waves - then Player.isGameClear = true
     }
 
     IEnumerator waiter()
@@ -56,4 +59,5 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
 }
