@@ -158,4 +158,20 @@ public class Gun : MonoBehaviour
         yield return new WaitForSeconds(laserDuration);
         laserLine.enabled = false;
     }
+
+    public void GunDamageUpgradeExecution(float percent, int howlong)
+    {
+        StartCoroutine(GunDamageUpgrade(percent, howlong));
+    }
+
+    IEnumerator GunDamageUpgrade(float percent, int howLong) // percent being from 0 (0% to 1(100%) 
+    {
+
+        var defaultDamage = damage;
+        damage = damage * (1 + percent);
+
+        yield return new WaitForSeconds(howLong);
+
+        damage = defaultDamage;
+    }
 }

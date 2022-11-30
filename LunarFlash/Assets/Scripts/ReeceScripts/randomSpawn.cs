@@ -16,9 +16,11 @@ public class randomSpawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        obs.Add(Instantiate(obPrefab, new Vector3(380, 2, 600), Quaternion.identity)); // this is ONLY for inventory testing - will get deleted
-        obs.Add(Instantiate(obPrefab, new Vector3(380, 2, 560), Quaternion.identity));// this is ONLY for inventory testing - will get deleted
-        obs.Add(Instantiate(obPrefab, new Vector3(380, 2, 580), Quaternion.identity));// this is ONLY for inventory testing - will get deleted
+        obs.Add(Instantiate(obPrefab, new Vector3(380, 4, 600), Quaternion.identity)); // this is ONLY for inventory testing - will get deleted
+        obs.Add(Instantiate(obPrefab, new Vector3(380, 4, 560), Quaternion.identity));// this is ONLY for inventory testing - will get deleted
+        obs.Add(Instantiate(obPrefab, new Vector3(380, 4, 580), Quaternion.identity));// this is ONLY for inventory testing - will get deleted
+        obs.Add(Instantiate(obPrefab, new Vector3(380, 4, 550), Quaternion.identity));// this is ONLY for inventory testing - will get deleted
+        obs.Add(Instantiate(obPrefab, new Vector3(380, 4, 570), Quaternion.identity));// this is ONLY for inventory testing - will get deleted
         spawn();
     }
 

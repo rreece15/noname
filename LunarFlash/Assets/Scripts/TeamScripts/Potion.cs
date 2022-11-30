@@ -17,6 +17,6 @@ public class Potion : ItemScriptable
 
     public void SetUpPotionCount()
     {
-        potionCount = Random.Range(1, 10);
+        potionCount = Random.Range(1, 6);
     }
 }

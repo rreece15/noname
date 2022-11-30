@@ -16,7 +16,7 @@ public class UIManager : MonoBehaviour
     [Space]
     [Header("Inventory Setting")]
     [SerializeField] private Canvas InventoryShortcutCanvas;
-    [SerializeField] private Canvas InventoryWholeCanvas;
+    //[SerializeField] private Canvas InventoryWholeCanvas;
     [Space]
     [Header("Resolution Setting")]
     // Screen Resolution
@@ -35,7 +35,7 @@ public class UIManager : MonoBehaviour
     void Start()
     {
 
-        InventoryWholeCanvas.GetComponent<Canvas>().enabled = false;
+        InventoryShortcutCanvas.GetComponent<Canvas>().enabled = false;
        
         optionsOpen.GetComponent<Canvas>().enabled = false;
         
@@ -89,16 +89,18 @@ public class UIManager : MonoBehaviour
     void OpenWholeInventory()
     {
         // Time.timeScale = 0;
-        InventoryWholeCanvas.GetComponent<Canvas>().enabled = true;
+        InventoryShortcutCanvas.GetComponent<Canvas>().enabled = true;
+        InventoryManager.IMInstance.InventoryOpen();
        // optionsOpen.GetComponent<Canvas>().enabled = true;
        // playerCanvas.GetComponent<Canvas>().enabled = false;
-        Cursor.lockState = CursorLockMode.Confined;
+        //Cursor.lockState = CursorLockMode.Confined;
     }
 
     void CloseWholeInventory()
     {
-        InventoryWholeCanvas.GetComponent<Canvas>().enabled = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        InventoryShortcutCanvas.GetComponent<Canvas>().enabled = false;
+        InventoryManager.IMInstance.InventoryClose();
+        //  Cursor.lockState = CursorLockMode.Locked;
     }
 
     void CloseOptions()
