@@ -54,6 +54,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        movingSpeed = 15;
         defaultMovingSpeed = movingSpeed;
         isGameOver = false;
         isGameClear = false;
@@ -64,7 +65,7 @@ public class Player : MonoBehaviour
 
         playerAudioSource = this.gameObject.GetComponent<AudioSource>();
 
-        movingSpeed = 8;
+        
         if (playerHP_text == null)
         {
             playerHP_text = HPcanvas.transform.GetChild(2).gameObject.GetComponent<TMP_Text>();
