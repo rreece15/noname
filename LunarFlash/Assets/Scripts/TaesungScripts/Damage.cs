@@ -37,7 +37,7 @@ public class Damage : MonoBehaviour
         // GameManager.Instance.playerHealth--;
         // GameManager.Instance.playerHealth--;
         attack.Play();
-        GameManager.Instance.playerScript.DecreasePlayerHP(5);
+        GameManager.Instance.playerScript.DecreasePlayerHP(10);
         yield return new WaitForSeconds(1);
         damageReady = true;
     }

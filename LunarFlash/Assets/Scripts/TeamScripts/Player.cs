@@ -56,7 +56,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        movingSpeed = 15;
+        movingSpeed = 10;
         defaultMovingSpeed = movingSpeed;
         isGameOver = false;
         isGameClear = false;
@@ -70,16 +70,17 @@ public class Player : MonoBehaviour
         
         if (playerHP_text == null)
         {
-            playerHP_text = HPcanvas.transform.GetChild(2).gameObject.GetComponent<TMP_Text>();
-            playerHP_text.text = playerHP.ToString();
+            playerHP_text = HPcanvas.transform.GetChild(2).gameObject.GetComponent<TMP_Text>(); 
         }
+        playerHP_text.text = playerHP.ToString();
 
         if (playerHP_bar == null)
         {
             playerHP_bar = HPcanvas.transform.GetChild(1).gameObject.GetComponent<Slider>();
-            playerHP_bar.maxValue = playerHP;
-            playerHP_bar.value = playerHP;
         }
+        playerHP_bar.maxValue = playerHP;
+        Debug.Log("playerHP bar maxvalue is " + playerHP_bar.maxValue);
+        playerHP_bar.value = playerHP;
 
         heightIncrease = true;
         heightDecrease = false;

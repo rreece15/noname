@@ -18,6 +18,7 @@ public class InventoryManager : MonoBehaviour
     public  Potion potionItemInfo;
     public AmmoItem basicAmmo;
     public AmmoItem upgradeAmmo;
+    public AudioClip itemcollected;
 
     GameObject playerInstance;
 
@@ -127,6 +128,8 @@ public class InventoryManager : MonoBehaviour
         {
             if (shortCutItem[i].GetComponent<InventorySlot>().isFullStatus() == false)
             {
+                playerInstance.GetComponent<AudioSource>().clip = itemcollected;
+                playerInstance.GetComponent<AudioSource>().Play();
                 // shortCutItem[i] = item;
                 // 1) Add an item image to the raw image
                 shortCutItem[i].transform.GetChild(0).GetComponent<RawImage>().texture = itemImage;
