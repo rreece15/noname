@@ -5,9 +5,16 @@ using UnityEngine;
 public class Damage : MonoBehaviour
 {
     public bool damageReady = true;
+    AudioSource attack;
+    public Animator animator;
     // Start is called before the first frame update
     void Start()
     {
+        if(attack == null)
+        {
+            attack = this.gameObject.GetComponent<AudioSource>();
+        }
+
     }
 
     // Update is called once per frame
@@ -25,13 +32,10 @@ public class Damage : MonoBehaviour
     }
     IEnumerator Damaging()
     {
-        //GameManager.Instance.playerHealth--;
-        // GameManager.Instance.playerHealth--;
-        // GameManager.Instance.playerHealth--;
-        // GameManager.Instance.playerHealth--;
-        // GameManager.Instance.playerHealth--;
-        GameManager.Instance.playerScript.DecreasePlayerHP(5);
+        attack.Play();
+        GameManager.Instance.playerScript.DecreasePlayerHP(10);
         yield return new WaitForSeconds(1);
         damageReady = true;
+        animator.SetTrigger("Walk_Cycle_1");
     }
 }

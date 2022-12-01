@@ -12,12 +12,20 @@ public class IdleState : State
      public int speed;
      public Transform[] waypoints;
      private int waypointIndex;
-     private float dist; 
+     private float dist;
+    AudioSource walkingSound;
+    public Animator animator;
 
     void Start()
     {
          waypointIndex = 0;
         Enemy.transform.LookAt(waypoints[waypointIndex].position);
+        animator.SetTrigger("Walk_Cycle_1");
+
+        if(walkingSound == null)
+        {
+            walkingSound = this.gameObject.GetComponent<AudioSource>();
+        }
     }
     void Update()
     {
@@ -32,11 +40,12 @@ public class IdleState : State
         {
        
         dist = Vector3.Distance(Enemy.transform.position, waypoints[waypointIndex].position);
-        if(dist < 1f)
+        if(dist < 5f)
         {
             IncreaseIndex();
         }
         Enemy.transform.Translate(Vector3.forward * speed * Time.deltaTime);
+            walkingSound.Play();
             return this;
         }
 
