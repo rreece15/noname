@@ -39,6 +39,7 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
 
         InventoryShortcutCanvas.GetComponent<Canvas>().enabled = false;
         inventoryFullUI = InventoryShortcutCanvas.transform.GetChild(1).gameObject;
@@ -114,6 +115,7 @@ public class UIManager : MonoBehaviour
 
     void OpenOptions()
     {
+        Gun.isGunEnabled = false;
         Time.timeScale = 0;
         options.GetComponent<Canvas>().enabled = false;
         optionsOpen.GetComponent<Canvas>().enabled = true;
@@ -140,6 +142,7 @@ public class UIManager : MonoBehaviour
 
     void CloseOptions()
     {
+        Gun.isGunEnabled = true;
         Debug.Log(Input.mousePosition.x + " " + Input.mousePosition.y);
         Time.timeScale = 1;
         options.GetComponent<Canvas>().enabled = true;
@@ -150,6 +153,8 @@ public class UIManager : MonoBehaviour
 
     void SetResolution(int resIndex)
     {
+        Cursor.lockState = CursorLockMode.Confined;
+        Gun.isGunEnabled = false;
         Resolution res = resolutions[resIndex];
         Screen.SetResolution(res.width, res.height, Screen.fullScreen);
         Debug.Log("resolution set to: " + res.width + " x " + res.height);
@@ -161,6 +166,8 @@ public class UIManager : MonoBehaviour
 
     void SetVolume(float newVolume)
     {
+        Cursor.lockState = CursorLockMode.Confined;
+        Gun.isGunEnabled = false;
         volumeText.text = "Volume: " + newVolume.ToString("0.00");
         AudioListener.volume = newVolume;
         volume = newVolume;
@@ -171,6 +178,8 @@ public class UIManager : MonoBehaviour
 
     void OpenGameOverMenu()
     {
+        Cursor.lockState = CursorLockMode.Confined;
+        Gun.isGunEnabled = false;
         GameOverWinCanvas.enabled = true;
         GameOverWinCanvas.gameObject.transform.GetChild(1).GetComponent<TMP_Text>().enabled = true;
         GameOverWinCanvas.gameObject.transform.GetChild(2).GetComponent<TMP_Text>().enabled = false;
@@ -179,6 +188,8 @@ public class UIManager : MonoBehaviour
 
     void OpenGameWinMenu()
     {
+        Cursor.lockState = CursorLockMode.Confined;
+        Gun.isGunEnabled = false;
         GameOverWinCanvas.enabled = true;
         GameOverWinCanvas.gameObject.transform.GetChild(1).GetComponent<TMP_Text>().enabled = false;
         GameOverWinCanvas.gameObject.transform.GetChild(2).GetComponent<TMP_Text>().enabled = true;

@@ -2685,6 +2685,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameOverText
       objectReference: {fileID: 0}
+    - target: {fileID: 4111531751558877306, guid: d0419d061e38be644a4a3a5ccc4c3369,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4734088714614832648, guid: d0419d061e38be644a4a3a5ccc4c3369,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -2849,6 +2854,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -561
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977971019854004043, guid: d0419d061e38be644a4a3a5ccc4c3369,
+        type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 7255241376544712811, guid: d0419d061e38be644a4a3a5ccc4c3369,
         type: 3}

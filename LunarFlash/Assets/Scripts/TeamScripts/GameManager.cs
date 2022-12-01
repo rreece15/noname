@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] int numEnemies;
     public int score;
     public int enemyHealth;
+    bool cleared;
+    int waveNum;
     // public int playerHealth;  PLEASE USE playerScript.GetPlayerHP(); method to get playerHP value! 
     List<GameObject> enemies = new List<GameObject>();
     public GameObject EnemyPrefab;
@@ -22,6 +25,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        cleared = false;
+        waveNum = 0;
         if (Instance == null)
         { Instance = this; }
         GameObject.FindGameObjectsWithTag("Landscape")[0].GetComponent<Landscape>().makeTerrain();
@@ -42,10 +47,25 @@ public class GameManager : MonoBehaviour
         // spawns one enemy every 5 seconds in the nightTime
         if (!GameObject.FindGameObjectsWithTag("Timer")[0].GetComponent<DayTimer>().isDay() && !waiting)
         {
-
+            GameObject.FindGameObjectsWithTag("Wave")[0].GetComponent<TMP_Text>().SetText("");
             Debug.Log("SpawningEnemy");
+            cleared = false;
             SpawnEnemy();
             StartCoroutine(waiter());
+        }
+        if (GameObject.FindGameObjectsWithTag("Timer")[0].GetComponent<DayTimer>().getDayTime() > 0.95 && !cleared)
+        {
+            clearEnemies();
+            cleared = true;
+            waveNum++;
+            //Debug.Log(waveNum);
+            // show wave num
+            GameObject.FindGameObjectsWithTag("Wave")[0].GetComponent<TMP_Text>().SetText("Wave " + waveNum + " Complete!");
+        }
+        else if (!cleared && waveNum >= 3)
+        {
+            //Debug.Log("player win");
+            Player.isGameClear = true;
         }
 
         /////////////////when players clear all enemy waves - then Player.isGameClear = true
@@ -74,6 +94,15 @@ public class GameManager : MonoBehaviour
                 enemies.Add(Instantiate(EnemyPrefab, v, Quaternion.identity));
             }
         }
+    }
+
+    public void clearEnemies()
+    {
+        foreach(GameObject enemy in enemies)
+        {
+            Destroy(enemy);
+        }
+        enemies.Clear();
     }
 
     public float GetPlayerHPInfo()
