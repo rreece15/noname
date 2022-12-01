@@ -14,11 +14,13 @@ public class IdleState : State
      private int waypointIndex;
      private float dist;
     AudioSource walkingSound;
+    public Animator animator;
 
     void Start()
     {
          waypointIndex = 0;
         Enemy.transform.LookAt(waypoints[waypointIndex].position);
+        animator.SetTrigger("Walk_Cycle_1");
 
         if(walkingSound == null)
         {

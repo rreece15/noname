@@ -870,6 +870,14 @@ PrefabInstance:
       propertyPath: Player
       value: 
       objectReference: {fileID: 4117155787550268128}
+    - target: {fileID: 25752884, guid: 4e7afdf31c20ebf419ea38bf1d358719, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 574721513}
+    - target: {fileID: 1011554109, guid: 4e7afdf31c20ebf419ea38bf1d358719, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 574721513}
     - target: {fileID: 1011554109, guid: 4e7afdf31c20ebf419ea38bf1d358719, type: 3}
       propertyPath: waypoints.Array.data[0]
       value: 
@@ -878,11 +886,20 @@ PrefabInstance:
       propertyPath: waypoints.Array.data[1]
       value: 
       objectReference: {fileID: 1993709897}
+    - target: {fileID: 1809817557, guid: 4e7afdf31c20ebf419ea38bf1d358719, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 574721513}
     - target: {fileID: 3578037149276957070, guid: 4e7afdf31c20ebf419ea38bf1d358719,
         type: 3}
       propertyPath: score
       value: 
       objectReference: {fileID: 398884480}
+    - target: {fileID: 3578037149276957070, guid: 4e7afdf31c20ebf419ea38bf1d358719,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 574721513}
     - target: {fileID: 5792744366562842766, guid: 4e7afdf31c20ebf419ea38bf1d358719,
         type: 3}
       propertyPath: m_Name
@@ -948,6 +965,12 @@ PrefabInstance:
 --- !u!4 &574721509 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5794526363542072584, guid: 4e7afdf31c20ebf419ea38bf1d358719,
+    type: 3}
+  m_PrefabInstance: {fileID: 574721508}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &574721513 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5850578553012415794, guid: 4e7afdf31c20ebf419ea38bf1d358719,
     type: 3}
   m_PrefabInstance: {fileID: 574721508}
   m_PrefabAsset: {fileID: 0}
