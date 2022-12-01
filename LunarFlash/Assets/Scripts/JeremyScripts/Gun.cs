@@ -137,6 +137,7 @@ public class Gun : MonoBehaviour
             TakeDamage take = hit.transform.GetComponent<TakeDamage>();
             if (take != null)
             {
+                Debug.Log("Enemy is under attack!");
                 take.hitDamage(damage);
             }
             //line renderer stuff
