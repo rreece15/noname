@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
-using UnityEngine.SocialPlatforms.Impl;
 
 public class GameManager : MonoBehaviour
 {
@@ -57,7 +56,7 @@ public class GameManager : MonoBehaviour
         }
         if (GameObject.FindGameObjectsWithTag("Timer")[0].GetComponent<DayTimer>().getDayTime() > 0.95 && !cleared)
         {
-           // clearEnemies();
+            //clearEnemies();
             cleared = true;
             waveNum++;
             //Debug.Log(waveNum);
@@ -79,11 +78,6 @@ public class GameManager : MonoBehaviour
         scoreBoard.text = "Current Score: " + score.ToString();
     }
 
-    public int GetFinalScore()
-    {
-        return score;
-    }
-
     IEnumerator waiter()
     {
         waiting = true;
@@ -93,8 +87,8 @@ public class GameManager : MonoBehaviour
 
     void SpawnEnemy()
     {
-        int nextX = Random.Range(mapWidth/4, (mapWidth*3/4));
-        int nextZ = Random.Range(mapDepth/4, (mapDepth*3/4));
+        int nextX = Random.Range(0, mapWidth);
+        int nextZ = Random.Range(0, mapDepth);
         RaycastHit hit;
 
         if(Physics.Raycast(new Ray(new Vector3(nextX, 100, nextZ), Vector3.down), out hit, Mathf.Infinity, -1))
