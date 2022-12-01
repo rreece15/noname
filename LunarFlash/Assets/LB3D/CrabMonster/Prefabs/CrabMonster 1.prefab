@@ -4161,6 +4161,7 @@ GameObject:
   - component: {fileID: 5794526363542072584}
   - component: {fileID: 5850578553012415794}
   - component: {fileID: 5905256939213861738}
+  - component: {fileID: 3578037149276957070}
   m_Layer: 0
   m_Name: CrabMonster 1
   m_TagString: Untagged
@@ -4219,6 +4220,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 5850578553012415794}
+--- !u!114 &3578037149276957070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5792744366562842766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09377a06f8d2d114483a1b2b01c85504, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 50
 --- !u!1 &5792748071347383548
 GameObject:
   m_ObjectHideFlags: 0

@@ -133,13 +133,18 @@ public class Gun : MonoBehaviour
         if(Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, gunRange))
         {
             Debug.Log(hit.transform.name);
-
+            //This is used for damaging enemy when detected by raycast
+            TakeDamage take = hit.transform.GetComponent<TakeDamage>();
+            if (take != null)
+            {
+                take.hitDamage(damage);
+            }
+            //line renderer stuff
             laserLine.SetPosition(1, hit.point);
 
-            if (hit.rigidbody != null)
-            {
-                hit.rigidbody.AddForce(-hit.normal * 30f);
-            }
+            
+
+            
 
             GameObject impactObj = Instantiate(impact, hit.point, Quaternion.LookRotation(hit.normal));
             
