@@ -1447,6 +1447,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numEnemies: 1
   score: 0
+  scoreBoard: {fileID: 398884480}
   enemyHealth: 100
   EnemyPrefab: {fileID: 979458152}
   playerScript: {fileID: 4117155787550268137}
@@ -1656,7 +1657,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1172243491}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.02, y: 0, z: 0}
+  m_LocalPosition: {x: 20.08, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2165,7 +2166,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1993709896}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.71, y: 0, z: 0}
+  m_LocalPosition: {x: -22.84, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

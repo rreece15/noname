@@ -6,13 +6,15 @@ using TMPro;
 public class TakeDamage : MonoBehaviour
 {
     public float health = 50f;
-    public TMP_Text score;
-    public int currentsScore;
+    //public TMP_Text score;
+    //public int currentsScore;
     public Animator animator;
+    GameManager addScore;
 
     private void Start()
     {
-        currentsScore = 0;
+        //currentsScore = 0;
+        addScore = FindObjectOfType<GameManager>();
     }
 
     public void hitDamage (float amount)
@@ -31,8 +33,9 @@ public class TakeDamage : MonoBehaviour
         
         animator.SetTrigger("Die");
         yield return new WaitForSeconds(1);
-        currentsScore += 100;
-        score.text = "Current Score: " + currentsScore.ToString();
+        //currentsScore += 100;
+        //score.text = "Current Score: " + currentsScore.ToString();
+        addScore.updateScore();
         Destroy(gameObject);
     }
 
