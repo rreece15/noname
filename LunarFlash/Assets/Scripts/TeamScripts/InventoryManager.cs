@@ -276,17 +276,26 @@ public class InventoryManager : MonoBehaviour
                 // decrease the count of that item--;
                 // apply the effect of the item to the game...
                 Debug.Log("1 is pressed");
-                UseItem(shortCutItem[0], 0);
+                if (firstItemcount > 0)
+                {
+                    UseItem(shortCutItem[0], 0);
+                }
             }
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
-                UseItem(shortCutItem[1], 1);
-                Debug.Log("2 is pressed");
+                if (secondItemcount > 0)
+                {
+                    UseItem(shortCutItem[1], 1);
+                    Debug.Log("2 is pressed");
+                }
             }
             if (Input.GetKeyDown(KeyCode.Alpha3))
             {
-                UseItem(shortCutItem[2], 2);
-                Debug.Log("3 is pressed");
+                if (thirdItemcount > 0)
+                {
+                    UseItem(shortCutItem[2], 2);
+                    Debug.Log("3 is pressed");
+                }
             }
         }
 
