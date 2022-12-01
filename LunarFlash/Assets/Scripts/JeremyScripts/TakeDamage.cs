@@ -21,8 +21,7 @@ public class TakeDamage : MonoBehaviour
         StartCoroutine(Damaged());
         if (health <= 0f)
         {
-            currentsScore += 100;
-            score.text = "Current Score: " + currentsScore.ToString();
+            
             StartCoroutine(Killed());
         }
     }
@@ -32,6 +31,8 @@ public class TakeDamage : MonoBehaviour
         
         animator.SetTrigger("Die");
         yield return new WaitForSeconds(1);
+        currentsScore += 100;
+        score.text = "Current Score: " + currentsScore.ToString();
         Destroy(gameObject);
     }
 
