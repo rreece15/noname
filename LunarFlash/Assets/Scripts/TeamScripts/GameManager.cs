@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] int numEnemies;
     public int score;
+    public TMP_Text scoreBoard;
     public int enemyHealth;
     bool cleared;
     int waveNum;
@@ -19,7 +20,6 @@ public class GameManager : MonoBehaviour
     AudioSource gmAudio;
     private bool waiting;
     public Player playerScript;
-
     public int mapWidth;
     public int mapDepth;
     // Start is called before the first frame update
@@ -34,7 +34,8 @@ public class GameManager : MonoBehaviour
         waiting = false;
         gmAudio = this.GetComponent<AudioSource>();
         //gmAudio.Play();
-
+        score = 0;
+        scoreBoard.text = "Current Score: " + score.ToString();
         if (playerScript == null)
         {
             playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>() ;
@@ -69,6 +70,12 @@ public class GameManager : MonoBehaviour
         }
 
         /////////////////when players clear all enemy waves - then Player.isGameClear = true
+    }
+
+    public void updateScore()
+    {
+        score += 100;
+        scoreBoard.text = "Current Score: " + score.ToString();
     }
 
     IEnumerator waiter()
