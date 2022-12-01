@@ -32,7 +32,7 @@ public class IdleState : State
         {
        
         dist = Vector3.Distance(Enemy.transform.position, waypoints[waypointIndex].position);
-        if(dist < 1f)
+        if(dist < 5f)
         {
             IncreaseIndex();
         }
