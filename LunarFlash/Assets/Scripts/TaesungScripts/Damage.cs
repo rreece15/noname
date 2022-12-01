@@ -6,6 +6,7 @@ public class Damage : MonoBehaviour
 {
     public bool damageReady = true;
     AudioSource attack;
+    public Animator animator;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,14 +32,10 @@ public class Damage : MonoBehaviour
     }
     IEnumerator Damaging()
     {
-        //GameManager.Instance.playerHealth--;
-        // GameManager.Instance.playerHealth--;
-        // GameManager.Instance.playerHealth--;
-        // GameManager.Instance.playerHealth--;
-        // GameManager.Instance.playerHealth--;
         attack.Play();
         GameManager.Instance.playerScript.DecreasePlayerHP(10);
         yield return new WaitForSeconds(1);
         damageReady = true;
+        animator.SetTrigger("Walk_Cycle_1");
     }
 }

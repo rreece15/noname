@@ -9,7 +9,6 @@ public class ChaseState : State
     public EnterSphere enterSphere;
     public Transform Player;
     public NavMeshAgent navMeshAgent;
-
     public override State RunCurrentState()
     {
         if (!enterSphere.canSeeThePlayer)
