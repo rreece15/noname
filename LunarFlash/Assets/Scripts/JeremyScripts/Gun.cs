@@ -36,6 +36,8 @@ public class Gun : MonoBehaviour
 
     public Camera fpsCam;
 
+    bool isPaused;
+
     LineRenderer laserLine;
 
     public static bool isGunEnabled = true;
@@ -43,6 +45,7 @@ public class Gun : MonoBehaviour
     
     void Start()
     {
+        isPaused = false;
         shootSound = GetComponent<AudioSource>();
         gunState = GunState.Idle;
         currentAmmo = maxAmmo;
@@ -96,13 +99,17 @@ public class Gun : MonoBehaviour
                 return;
             }
 
-            if (Input.GetButtonDown("Fire1"))
+            if (!isPaused)
             {
-                shootSound.Play();
-                muzzleFlash.Play();
-                Shoot();
-                currnent.text = currentAmmo.ToString();
+                if (Input.GetButtonDown("Fire1"))
+                {
+                    shootSound.Play();
+                    muzzleFlash.Play();
+                    Shoot();
+                    currnent.text = currentAmmo.ToString();
+                }
             }
+            
         }
     }
 
@@ -164,6 +171,11 @@ public class Gun : MonoBehaviour
             laserLine.SetPosition(1, rayOrigin + (fpsCam.transform.forward * gunRange));
         }
         StartCoroutine(ShootLaser());
+    }
+
+    public void setPaused(bool val)
+    {
+        isPaused = val;
     }
 
     IEnumerator ShootLaser()

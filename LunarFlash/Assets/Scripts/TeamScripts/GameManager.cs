@@ -62,6 +62,7 @@ public class GameManager : MonoBehaviour
             //Debug.Log(waveNum);
             // show wave num
             GameObject.FindGameObjectsWithTag("Wave")[0].GetComponent<TMP_Text>().SetText("Wave " + waveNum + " Complete!");
+            GameObject.FindGameObjectsWithTag("GameManager")[0].GetComponent<randomSpawn>().spawn();
         }
         else if (!cleared && waveNum >= 3)
         {

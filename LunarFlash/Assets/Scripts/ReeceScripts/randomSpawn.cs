@@ -26,7 +26,7 @@ public class randomSpawn : MonoBehaviour
         spawn();
     }
 
-    void spawn() //spawns randomly in a specific range from zero
+    public void spawn() //spawns randomly in a specific range from zero
     {
         for(int i = 0; i < numToSpawn; i++)
         {
