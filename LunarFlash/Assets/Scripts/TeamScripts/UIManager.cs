@@ -31,6 +31,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TMP_Text volumeText;
     float volume;
 
+    bool menuIsOpen;
+
     static public bool inventoryFullUION=false;
     static public bool inventoryFullUIOFF = false;
     // score
@@ -40,7 +42,7 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-
+        menuIsOpen = false;
         InventoryShortcutCanvas.GetComponent<Canvas>().enabled = false;
         inventoryFullUI = InventoryShortcutCanvas.transform.GetChild(1).gameObject;
         inventoryFullUI.transform.localScale = new Vector3(0, 1, 1);
@@ -77,8 +79,12 @@ public class UIManager : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Q))
         {
+            menuIsOpen = true;
+            GameObject.FindGameObjectsWithTag("Gun")[0].GetComponent<Gun>().setPaused(true);
             OpenOptions();
         }
+
+        
 
         if (Input.GetKey(KeyCode.E))
         {
@@ -149,6 +155,7 @@ public class UIManager : MonoBehaviour
         optionsOpen.GetComponent<Canvas>().enabled = false;
         playerCanvas.GetComponent<Canvas>().enabled = true;
         Cursor.lockState = CursorLockMode.Locked;
+        GameObject.FindGameObjectsWithTag("Gun")[0].GetComponent<Gun>().setPaused(false);
     }
 
     void SetResolution(int resIndex)

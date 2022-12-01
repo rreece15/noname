@@ -8,6 +8,7 @@ TagManager:
   - Timer
   - Landscape
   - Wave
+  - Gun
   layers:
   - Default
   - TransparentFX
