@@ -143,7 +143,7 @@ public class UIManager : MonoBehaviour
     void CloseOptions()
     {
         Gun.isGunEnabled = true;
-        Debug.Log(Input.mousePosition.x + " " + Input.mousePosition.y);
+        Debug.Log("mouseClick");
         Time.timeScale = 1;
         options.GetComponent<Canvas>().enabled = true;
         optionsOpen.GetComponent<Canvas>().enabled = false;

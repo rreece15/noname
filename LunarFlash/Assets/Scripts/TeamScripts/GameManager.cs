@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
         }
         if (GameObject.FindGameObjectsWithTag("Timer")[0].GetComponent<DayTimer>().getDayTime() > 0.95 && !cleared)
         {
-            clearEnemies();
+            //clearEnemies();
             cleared = true;
             waveNum++;
             //Debug.Log(waveNum);
