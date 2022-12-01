@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         // spawns one enemy every 5 seconds in the nightTime
-        if (!GameObject.FindGameObjectsWithTag("timer")[0].GetComponent<DayTimer>().isDay() && !waiting)
+        if (!GameObject.FindGameObjectsWithTag("Timer")[0].GetComponent<DayTimer>().isDay() && !waiting)
         {
 
             Debug.Log("SpawningEnemy");

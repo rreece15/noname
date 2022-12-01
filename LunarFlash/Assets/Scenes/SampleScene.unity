@@ -585,7 +585,7 @@ GameObject:
   - component: {fileID: 410087043}
   m_Layer: 0
   m_Name: Directional Light
-  m_TagString: Untagged
+  m_TagString: Timer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -700,7 +700,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   directionalLightObj: {fileID: 410087039}
-  dayLength: 0.01
+  dayLength: 0.1
 --- !u!1 &412274432 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3518093762673148244, guid: d0419d061e38be644a4a3a5ccc4c3369,
@@ -1254,7 +1254,7 @@ MonoBehaviour:
   score: 0
   enemyHealth: 100
   EnemyPrefab: {fileID: 574721511}
-  playerScript: {fileID: 0}
+  playerScript: {fileID: 4117155787550268137}
 --- !u!4 &1012433209
 Transform:
   m_ObjectHideFlags: 0
@@ -2345,10 +2345,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3394294797797179489, guid: aad4f50a5dfa4e74397ec8f3bb2f2166,
+        type: 3}
+      propertyPath: surface
+      value: 
+      objectReference: {fileID: 3815974132786281897}
+    - target: {fileID: 3394294797797179489, guid: aad4f50a5dfa4e74397ec8f3bb2f2166,
+        type: 3}
+      propertyPath: variation
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 3815974134710234665, guid: aad4f50a5dfa4e74397ec8f3bb2f2166,
         type: 3}
       propertyPath: m_Name
       value: Lunar
+      objectReference: {fileID: 0}
+    - target: {fileID: 3815974134710234665, guid: aad4f50a5dfa4e74397ec8f3bb2f2166,
+        type: 3}
+      propertyPath: m_TagString
+      value: Landscape
       objectReference: {fileID: 0}
     - target: {fileID: 3815974134710234678, guid: aad4f50a5dfa4e74397ec8f3bb2f2166,
         type: 3}
@@ -2407,6 +2422,42 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aad4f50a5dfa4e74397ec8f3bb2f2166, type: 3}
+--- !u!1 &3815974132786281896 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3815974134710234665, guid: aad4f50a5dfa4e74397ec8f3bb2f2166,
+    type: 3}
+  m_PrefabInstance: {fileID: 3815974132786281895}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3815974132786281897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3815974132786281896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.16666667
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 0}
+  m_BuildHeightMesh: 0
 --- !u!1001 &4117155787550268126
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2648,6 +2699,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4117155787550268137 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7902547580712533079, guid: a7b51742db5f8434fb149f6ad1dde5a6,
+    type: 3}
+  m_PrefabInstance: {fileID: 4117155787550268126}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 553373073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feb708b495712fa4d8b4a6e289ac4fe1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6977971018198930931
 PrefabInstance:
   m_ObjectHideFlags: 0
