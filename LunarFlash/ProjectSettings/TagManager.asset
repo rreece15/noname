@@ -7,6 +7,7 @@ TagManager:
   - Item
   - Timer
   - Landscape
+  - Wave
   layers:
   - Default
   - TransparentFX

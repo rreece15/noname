@@ -29,6 +29,11 @@ public class DayTimer : MonoBehaviour
         }
     }
 
+    public float getDayTime()
+    {
+        return Mathf.Max((Mathf.Abs(Mathf.Sin(dayLength * Time.time))), (float)0.05);
+    }
+
     public bool isDay()
     {
         //Debug.Log(daytime);
