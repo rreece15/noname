@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: UpgradeAmmo
   m_EditorClassIdentifier: 
   itemName: Ammo_Upgrade
-  itemImage: {fileID: 2800000, guid: 7d910c8e1a7f2404f8e51f72cb6314bd, type: 3}
+  itemImage: {fileID: 2800000, guid: 2948376df79dd8d4ba2c85c7f11453e0, type: 3}
   attackDamage: 60
-  ammoCount: 19
+  ammoCount: 1
   Color: {r: 1, g: 0, b: 1, a: 1}

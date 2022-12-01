@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 enum GunState
 {
@@ -11,6 +12,9 @@ enum GunState
 
 public class Gun : MonoBehaviour
 {
+
+    public TMP_Text currnent;
+    public TMP_Text totalAmmo;
 
     public float damage = 10f;
     public float gunRange = 100f;
@@ -40,6 +44,9 @@ public class Gun : MonoBehaviour
         shootSound = GetComponent<AudioSource>();
         gunState = GunState.Idle;
         currentAmmo = maxAmmo;
+
+        currnent.text = currentAmmo.ToString();
+        totalAmmo.text = maxAmmo.ToString();
     }
 
     void Awake()
@@ -81,6 +88,7 @@ public class Gun : MonoBehaviour
         if(currentAmmo <= 0 || Input.GetKeyDown(KeyCode.R))
         {
             StartCoroutine(Reload());
+            currnent.text = maxAmmo.ToString();
             return;
         }
 
@@ -89,6 +97,7 @@ public class Gun : MonoBehaviour
             shootSound.Play();
             muzzleFlash.Play();
             Shoot();
+            currnent.text = currentAmmo.ToString();
         }
     }
 
@@ -124,13 +133,18 @@ public class Gun : MonoBehaviour
         if(Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, gunRange))
         {
             Debug.Log(hit.transform.name);
-
+            //This is used for damaging enemy when detected by raycast
+            TakeDamage take = hit.transform.GetComponent<TakeDamage>();
+            if (take != null)
+            {
+                take.hitDamage(damage);
+            }
+            //line renderer stuff
             laserLine.SetPosition(1, hit.point);
 
-            if (hit.rigidbody != null)
-            {
-                hit.rigidbody.AddForce(-hit.normal * 30f);
-            }
+            
+
+            
 
             GameObject impactObj = Instantiate(impact, hit.point, Quaternion.LookRotation(hit.normal));
             
@@ -148,5 +162,21 @@ public class Gun : MonoBehaviour
         laserLine.enabled = true;
         yield return new WaitForSeconds(laserDuration);
         laserLine.enabled = false;
+    }
+
+    public void GunDamageUpgradeExecution(float percent, int howlong)
+    {
+        StartCoroutine(GunDamageUpgrade(percent, howlong));
+    }
+
+    IEnumerator GunDamageUpgrade(float percent, int howLong) // percent being from 0 (0% to 1(100%) 
+    {
+
+        var defaultDamage = damage;
+        damage = damage * (1 + percent);
+
+        yield return new WaitForSeconds(howLong);
+
+        damage = defaultDamage;
     }
 }

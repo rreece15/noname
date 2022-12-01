@@ -7,7 +7,7 @@ public class AmmoItem : ItemScriptable
 {
     [Header("Ammo Values")]
     public int attackDamage;
-    public int ammoCount;
+    public int ammoCount=1;
     public Color Color;
 
     /*private void OnEnable()
@@ -15,8 +15,8 @@ public class AmmoItem : ItemScriptable
         ammoCount = Random.Range(1, 20);
     }*/
 
-    public void SetUpAmmoCount()
+   /* public void SetUpAmmoCount()
     {
         ammoCount = Random.Range(1, 20);
-    }
+    }*/
 }

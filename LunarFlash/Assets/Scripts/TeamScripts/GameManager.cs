@@ -1,22 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
     [SerializeField] int numEnemies;
+    public int score;
+    public int enemyHealth;
+    // public int playerHealth;  PLEASE USE playerScript.GetPlayerHP(); method to get playerHP value! 
     List<GameObject> enemies = new List<GameObject>();
     public GameObject EnemyPrefab;
-
+    AudioSource gmAudio;
     private bool waiting;
+    public Player playerScript;
     // Start is called before the first frame update
     void Start()
     {
         GameObject.FindGameObjectsWithTag("Landscape")[0].GetComponent<Landscape>().makeTerrain();
         //SpawnEnemies();
         waiting = false;
+        gmAudio = this.GetComponent<AudioSource>();
+        //gmAudio.Play();
+
+        if (playerScript == null)
+        {
+            playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>() ;
+        }
     }
 
     // Update is called once per frame
@@ -30,6 +42,8 @@ public class GameManager : MonoBehaviour
             SpawnEnemy();
             StartCoroutine(waiter());
         }
+
+        /////////////////when players clear all enemy waves - then Player.isGameClear = true
     }
 
     IEnumerator waiter()
@@ -55,5 +69,10 @@ public class GameManager : MonoBehaviour
                 enemies.Add(Instantiate(EnemyPrefab, v, Quaternion.identity));
             }
         }
+    }
+
+    public float GetPlayerHPInfo()
+    {
+        return playerScript.GetPlayerHP();
     }
 }

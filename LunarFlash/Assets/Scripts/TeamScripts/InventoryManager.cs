@@ -9,12 +9,17 @@ public class InventoryManager : MonoBehaviour
 {
     [SerializeField] GameObject[] shortCutItem;
     [SerializeField] GameObject[] wholeItem;
+    [SerializeField] Gun gunScript;
+  
     public static InventoryManager IMInstance { get; private set; }
     public static string collectedItemName;
+    public static bool isInventoryLocked = false;  // this is for deciding whether a player can collect a new item or not
     [Header("ItemInfoList")]
     public  Potion potionItemInfo;
     public AmmoItem basicAmmo;
     public AmmoItem upgradeAmmo;
+
+    GameObject playerInstance;
 
     //InventoryInfoUpdate
     ScriptableObject collectedItemInfo;
@@ -24,7 +29,26 @@ public class InventoryManager : MonoBehaviour
     //shortCutInventory
     bool isShortCutFull = false;
     bool isWholeFull = false;
+    bool isInventoryOpen = false;
+    GameObject firstSlot;
+    GameObject secondSlot;
+    GameObject thirdSlot;
+    int firstItemcount =-1;
+    int secondItemcount = -1;
+    int thirdItemcount = -1;
 
+
+    public void InventoryOpen()
+    {
+        isInventoryOpen = true;
+        //Debug.Log("Inventory Open");
+    }
+
+    public void InventoryClose()
+    {
+        isInventoryOpen = false;
+        //Debug.Log("Inventory Close");
+    }
     public static void GetItemInfo(GameObject item)
     {
         collectedItemName = item.GetComponent<ItemSetting>().GetTheItemInfo();
@@ -40,7 +64,7 @@ public class InventoryManager : MonoBehaviour
         {
             IMInstance.UpdateShortCutInventory();
         }
-        else
+       /* else
         {
             Debug.Log("ShortCut Inventory is FULL");
             if (IMInstance.CheckWholeIsFull() == false)
@@ -52,7 +76,7 @@ public class InventoryManager : MonoBehaviour
                 Debug.Log("Full Inventory is FULL");
             }
 
-        }
+        }*/
         //if shortcut is NOT full
         // && if this is a new item, 
         // 1) Add an item image to the raw image
@@ -74,7 +98,7 @@ public class InventoryManager : MonoBehaviour
         {
             collectedItemInfo = basicAmmo;
             itemImage = basicAmmo.itemImage;
-            basicAmmo.SetUpAmmoCount();
+            //basicAmmo.SetUpAmmoCount(); - upgrade item = only 1 
             itemCount = basicAmmo.ammoCount;
             itemColor = basicAmmo.Color;
         }
@@ -82,7 +106,7 @@ public class InventoryManager : MonoBehaviour
         {
             collectedItemInfo = upgradeAmmo;
             itemImage = upgradeAmmo.itemImage;
-            upgradeAmmo.SetUpAmmoCount();
+            // upgradeAmmo.SetUpAmmoCount(); - upgrade item = only 1 
             itemCount = upgradeAmmo.ammoCount;
             itemColor = upgradeAmmo.Color;
         }
@@ -109,10 +133,26 @@ public class InventoryManager : MonoBehaviour
                 shortCutItem[i].transform.GetChild(0).GetComponent<RawImage>().color = itemColor;
                 shortCutItem[i].transform.GetChild(1).GetComponent<TMP_Text>().text = itemCount.ToString();
                 shortCutItem[i].GetComponent<InventorySlot>().GetsFilled();
+
+                if (i == 0)
+                {
+                    firstItemcount = itemCount;
+                    Debug.Log("firstItemcount is " + firstItemcount);
+                }
+                else if (i == 1)
+                {
+                    secondItemcount = itemCount;
+                    Debug.Log("secondItemcount is " + secondItemcount);
+                }
+                else if (i == 2)
+                {
+                    thirdItemcount = itemCount;
+                    Debug.Log("thridItemcount is " + thirdItemcount);
+                }
                 // 2) Update the item count number
                 break;
             }
-            else
+          /*  else
             {
                if(shortCutItem[i].transform.GetChild(0).GetComponent<RawImage>().texture == itemImage)
                 {
@@ -123,11 +163,11 @@ public class InventoryManager : MonoBehaviour
                     shortCutItem[i].transform.GetChild(1).GetComponent<TMP_Text>().text = currentItemCount.ToString();
                 }
                
-            }
+            }*/
         }
     }
  
-    void UpdateFullInventory()
+    void UpdateFullInventory() // not going to use this 
     {
         for (int i = 0; i < wholeItem.Length; i++)
         {
@@ -160,11 +200,11 @@ public class InventoryManager : MonoBehaviour
     {
         for(int i = 0; i < shortCutItem.Length; i++)
         {
-            if (shortCutItem[i].transform.GetChild(0).GetComponent<RawImage>().texture == null)
+            if (shortCutItem[i].GetComponent<InventorySlot>().isFullStatus()==false)//(shortCutItem[i].transform.GetChild(0).GetComponent<RawImage>().texture == null)
             {
                 isShortCutFull = false;
                 //return isShortCutFull;
-                //break;
+                break;
             }
             else
             {
@@ -174,11 +214,11 @@ public class InventoryManager : MonoBehaviour
         }
 
         //isShortCutFull = true;
-        Debug.Log("isShortCutFull is : " + isShortCutFull);
+        //Debug.Log("isShortCutFull is : " + isShortCutFull);
         return isShortCutFull;
     }
 
-    bool CheckWholeIsFull()
+    bool CheckWholeIsFull() // not going to use it
     {
         for (int i = 0; i < wholeItem.Length; i++)
         {
@@ -206,13 +246,182 @@ public class InventoryManager : MonoBehaviour
         if (IMInstance == null)
         { IMInstance = this; }
 
-       // shortCutItem = new GameObject[3];
-       // wholeItem = new GameObject[15];
+        if (playerInstance == null)
+        {
+            playerInstance = GameObject.FindGameObjectWithTag("Player");
+        }
+
+        // shortCutItem = new GameObject[3];
+        // wholeItem = new GameObject[15];
+
+        if (CheckShortCutIsFull() == true)
+        {
+            isInventoryLocked = true;
+            UIManager.inventoryFullUION = true;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (isInventoryOpen)
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                //shortCutItem[0]
+                // get what the item is ??? how can I do this????????????????????
+                // decrease the count of that item--;
+                // apply the effect of the item to the game...
+                Debug.Log("1 is pressed");
+                UseItem(shortCutItem[0], 0);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                UseItem(shortCutItem[1], 1);
+                Debug.Log("2 is pressed");
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                UseItem(shortCutItem[2], 2);
+                Debug.Log("3 is pressed");
+            }
+        }
+
+
+        if (CheckShortCutIsFull() == true)
+        {
+            isInventoryLocked = true;
+            UIManager.inventoryFullUION = true;
+        }
+    }
+
+
+   
+
+    public void UseItem(GameObject itemInSlot, int i)
+    {
+        if(itemInSlot.transform.GetChild(0).GetComponent<RawImage>().texture.name.Contains("HP"))
+        {
+            Debug.Log("HP ITEM");
+            if (i == 0 && firstItemcount >0)
+            {
+                firstItemcount--;
+                UpdateItemCount(itemInSlot, firstItemcount);
+                
+                Debug.Log("first item count it " + firstItemcount);
+                /* if (firstItemcount > 1)
+                 {
+                     firstItemcount--;
+                     itemInSlot.transform.GetChild(1).GetComponent<TMP_Text>().text = firstItemcount.ToString();
+                 }
+                 else if(firstItemcount == 1)
+                 {
+                     firstItemcount = 0;
+                     itemInSlot.transform.GetChild(0).GetComponent<RawImage>().texture = null;
+                     itemInSlot.transform.GetChild(0).GetComponent<RawImage>().color = new Color(255,255,255,45);
+                     itemInSlot.transform.GetChild(1).GetComponent<TMP_Text>().text = firstItemcount.ToString();
+                 }*/
+
+                playerInstance.GetComponent<Player>().IncreasePlayerHP(20); //HPpotion will increase player's HP by 20
+            }
+           else if (i == 1 && secondItemcount > 0)
+            {
+                secondItemcount--;
+                UpdateItemCount(itemInSlot, secondItemcount);
+               
+                Debug.Log("2nd item count it " + secondItemcount);
+                // secondItemcount--;
+                //itemInSlot.transform.GetChild(1).GetComponent<TMP_Text>().text = secondItemcount.ToString();
+                playerInstance.GetComponent<Player>().IncreasePlayerHP(20);
+            }
+            else if (i == 2 && thirdItemcount > 0)
+            {
+                thirdItemcount--;
+                UpdateItemCount(itemInSlot, thirdItemcount);
+                
+                Debug.Log("third item count it " + thirdItemcount);
+                //thirdItemcount--;
+                //itemInSlot.transform.GetChild(1).GetComponent<TMP_Text>().text = thirdItemcount.ToString();
+                playerInstance.GetComponent<Player>().IncreasePlayerHP(20);
+            }
+        }
+        else if (itemInSlot.transform.GetChild(0).GetComponent<RawImage>().texture.name.Contains("Basic"))
+        {
+            Debug.Log("BASIC ITEM");
+            if (i == 0 && firstItemcount > 0)
+            {
+                firstItemcount--;
+                UpdateItemCount(itemInSlot, firstItemcount);
+                
+                gunScript.GunDamageUpgradeExecution(0.3f, 3);
+               
+            }
+            else if (i == 1 && secondItemcount > 0)
+            {
+                secondItemcount--;
+                UpdateItemCount(itemInSlot, secondItemcount);
+                
+                gunScript.GunDamageUpgradeExecution(0.3f, 3);
+
+            }
+            else if (i == 2 && thirdItemcount > 0)
+            {
+                thirdItemcount--;
+                UpdateItemCount(itemInSlot, thirdItemcount);
+                
+                gunScript.GunDamageUpgradeExecution(0.3f, 3);
+
+            }
+        }
+        else if (itemInSlot.transform.GetChild(0).GetComponent<RawImage>().texture.name.Contains("Upgrade"))
+        {
+
+            Debug.Log("UPGRADE ITEM");
+            if (i == 0 && firstItemcount > 0)
+            {
+                firstItemcount--;
+                UpdateItemCount(itemInSlot, firstItemcount);
+                
+                gunScript.GunDamageUpgradeExecution(0.5f, 3);
+
+            }
+            else if (i == 1 && secondItemcount > 0)
+            {
+               secondItemcount--;
+                UpdateItemCount(itemInSlot, secondItemcount);
+                
+                gunScript.GunDamageUpgradeExecution(0.5f, 3);
+
+            }
+            else if (i == 2 && thirdItemcount > 0)
+            {
+                thirdItemcount--;
+                UpdateItemCount(itemInSlot, thirdItemcount);
+                
+                gunScript.GunDamageUpgradeExecution(0.5f, 3);
+
+            }
+        }
+    }
+
+    void UpdateItemCount(GameObject item, int count)
+    {
+        if (count >= 1)
+        {
+           // count--;
+            item.transform.GetChild(1).GetComponent<TMP_Text>().text = count.ToString();
+        }
+        else if (count == 0)
+        {
+            isShortCutFull = false;
+            count = -1;
+            item.transform.GetChild(0).GetComponent<RawImage>().color = new Color(1.000f, 1.000f, 1.000f, 0.176f); ;
+            item.transform.GetChild(0).GetComponent<RawImage>().texture = null;
+            item.transform.GetChild(1).GetComponent<TMP_Text>().text = "0";// count.ToString();
+            item.GetComponent<InventorySlot>().GetsEmptied();
+            isInventoryLocked = false;
+            UIManager.inventoryFullUIOFF = true;
+            UIManager.inventoryFullUION = false;
+        }
     }
 }

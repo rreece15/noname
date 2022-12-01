@@ -15,7 +15,7 @@ public class ItemSetting : MonoBehaviour
     {
         var index = Random.Range(0, 10);
 
-        if(index == 1 || index == 2 || index == 3)
+        if(index == 1 || index == 2 )//|| index == 3)
         {
             itemInfo = "BasicAmmo";
         }
