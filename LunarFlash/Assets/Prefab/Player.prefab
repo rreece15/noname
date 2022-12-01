@@ -145,20 +145,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHP: 100
-  movingSpeed: 5
+  movingSpeed: 10
   camSpeed: 0.5
-  attackable: 1
-  ammoQuant: 0
-  bullet: {fileID: 0}
-  ammoChargeTimer: 0
-  ammoChargeTime: 3
+  heightchange: 0.02
+  dashUI: {fileID: 0}
   HPcanvas: {fileID: 0}
   playerHP_text: {fileID: 0}
   playerHP_bar: {fileID: 0}
   AmmoCanvas: {fileID: 0}
   Ammo_Total: {fileID: 0}
   Ammo_Current: {fileID: 0}
-  explosionEffect: {fileID: 0}
+  inventoryFull: {fileID: 0}
+  dashSound: {fileID: 0}
 --- !u!143 &4117155787550268129
 CharacterController:
   m_ObjectHideFlags: 0

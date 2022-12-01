@@ -134,10 +134,14 @@ public class Gun : MonoBehaviour
         {
             Debug.Log(hit.transform.name);
             //This is used for damaging enemy when detected by raycast
-            TakeDamage take = hit.transform.GetComponent<TakeDamage>();
-            if (take != null)
-            {
-                take.hitDamage(damage);
+            // TakeDamage take = hit.transform.GetComponent<TakeDamage>();
+            if (hit.transform.name.Contains("yon"))
+           { TakeDamage take = hit.transform.parent.GetComponent<TakeDamage>();
+                if (take != null)
+                {
+                    Debug.Log("Enemy is under attack!");
+                    take.hitDamage(damage);
+                } 
             }
             //line renderer stuff
             laserLine.SetPosition(1, hit.point);

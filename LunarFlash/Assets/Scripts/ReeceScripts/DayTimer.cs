@@ -31,7 +31,7 @@ public class DayTimer : MonoBehaviour
 
     public bool isDay()
     {
-        Debug.Log(daytime);
+        //Debug.Log(daytime);
         return daytime;
     }
 }
