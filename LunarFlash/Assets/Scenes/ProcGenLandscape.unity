@@ -1562,7 +1562,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   directionalLightObj: {fileID: 410087039}
-  dayLength: 0.01
+  dayLength: 0.1
 --- !u!1 &456749622
 GameObject:
   m_ObjectHideFlags: 0
@@ -4344,6 +4344,8 @@ MonoBehaviour:
   openOptions: {fileID: 2112863974}
   closeOptions: {fileID: 20258012}
   playerCanvas: {fileID: 2002662547}
+  InventoryShortcutCanvas: {fileID: 0}
+  InventoryWholeCanvas: {fileID: 0}
   resolutionDropdown: {fileID: 590786086}
   volumeSlider: {fileID: 213185716}
   volumeText: {fileID: 395971191}
