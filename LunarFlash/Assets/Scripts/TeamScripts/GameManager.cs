@@ -78,6 +78,11 @@ public class GameManager : MonoBehaviour
         scoreBoard.text = "Current Score: " + score.ToString();
     }
 
+    public int GetFinalScore()
+    {
+        return score;
+    }
+
     IEnumerator waiter()
     {
         waiting = true;
