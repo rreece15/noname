@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
             GameObject.FindGameObjectsWithTag("Wave")[0].GetComponent<TMP_Text>().SetText("Wave " + waveNum + " Complete!");
             GameObject.FindGameObjectsWithTag("GameManager")[0].GetComponent<randomSpawn>().spawn();
         }
-        else if (!cleared && waveNum >= 3)
+        else if (/*!*/cleared && waveNum /*>*/== 3)
         {
             //Debug.Log("player win");
             Player.isGameClear = true;
@@ -93,8 +93,8 @@ public class GameManager : MonoBehaviour
 
     void SpawnEnemy()
     {
-        int nextX = Random.Range(0, mapWidth);
-        int nextZ = Random.Range(0, mapDepth);
+        int nextX = Random.Range(mapWidth/3, mapWidth*2/3);//0, mapWidth);
+        int nextZ = Random.Range(mapDepth/3, mapDepth*2/3);//0, mapDepth);
         RaycastHit hit;
 
         if(Physics.Raycast(new Ray(new Vector3(nextX, 100, nextZ), Vector3.down), out hit, Mathf.Infinity, -1))

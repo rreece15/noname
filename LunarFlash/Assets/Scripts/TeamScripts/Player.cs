@@ -56,12 +56,13 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         movingSpeed = 10;
         defaultMovingSpeed = movingSpeed;
         isGameOver = false;
         isGameClear = false;
-        this.gameObject.transform.position = new Vector3(246f, 12, 250);
-       
+        this.gameObject.transform.position = new Vector3(246f, 20, 250);
+        Debug.Log("Game START///////////////////////");
         playerController = this.gameObject.GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
 
@@ -84,7 +85,7 @@ public class Player : MonoBehaviour
 
         heightIncrease = true;
         heightDecrease = false;
-
+        Time.timeScale = 1;
     }
   
     // Update is called once per frame

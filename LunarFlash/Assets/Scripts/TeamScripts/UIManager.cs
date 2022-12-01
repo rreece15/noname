@@ -57,7 +57,7 @@ public class UIManager : MonoBehaviour
 
         optionsOpen.GetComponent<Canvas>().enabled = false;
         
-        closeOptions.onClick.AddListener(() => CloseOptions());
+       // closeOptions.onClick.AddListener(() => CloseOptions());
 
         volumeSlider.onValueChanged.AddListener((v) => SetVolume(v));
 
@@ -151,7 +151,7 @@ public class UIManager : MonoBehaviour
         //  Cursor.lockState = CursorLockMode.Locked;
     }
 
-    void CloseOptions()
+    public void CloseOptions()
     {
         Gun.isGunEnabled = true;
         Debug.Log("mouseClick");

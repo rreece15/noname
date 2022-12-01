@@ -12,6 +12,7 @@ public class DayTimer : MonoBehaviour
     void Start()
     {
         directionalLight = directionalLightObj.GetComponent<Light>();
+        directionalLight.intensity = 0;
     }
 
     // Update is called once per frame

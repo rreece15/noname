@@ -9,6 +9,7 @@ TagManager:
   - Landscape
   - Wave
   - Gun
+  - GameManager
   layers:
   - Default
   - TransparentFX
