@@ -18,11 +18,11 @@ public class randomSpawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        obs.Add(Instantiate(obPrefab, new Vector3(380, 4, 600), Quaternion.identity)); // this is ONLY for inventory testing - will get deleted
-        obs.Add(Instantiate(obPrefab, new Vector3(380, 4, 560), Quaternion.identity));// this is ONLY for inventory testing - will get deleted
-        obs.Add(Instantiate(obPrefab, new Vector3(380, 4, 580), Quaternion.identity));// this is ONLY for inventory testing - will get deleted
-        obs.Add(Instantiate(obPrefab, new Vector3(380, 4, 550), Quaternion.identity));// this is ONLY for inventory testing - will get deleted
-        obs.Add(Instantiate(obPrefab, new Vector3(380, 4, 570), Quaternion.identity));// this is ONLY for inventory testing - will get deleted
+        //obs.Add(Instantiate(obPrefab, new Vector3(380, 4, 600), Quaternion.identity)); // this is ONLY for inventory testing - will get deleted
+      //  obs.Add(Instantiate(obPrefab, new Vector3(380, 4, 560), Quaternion.identity));// this is ONLY for inventory testing - will get deleted
+       // obs.Add(Instantiate(obPrefab, new Vector3(380, 4, 580), Quaternion.identity));// this is ONLY for inventory testing - will get deleted
+       //// obs.Add(Instantiate(obPrefab, new Vector3(380, 4, 550), Quaternion.identity));// this is ONLY for inventory testing - will get deleted
+        //obs.Add(Instantiate(obPrefab, new Vector3(380, 4, 570), Quaternion.identity));// this is ONLY for inventory testing - will get deleted
         spawn();
     }
 
@@ -30,7 +30,7 @@ public class randomSpawn : MonoBehaviour
     {
         for(int i = 0; i < numToSpawn; i++)
         {
-            obs.Add(Instantiate(obPrefab, new Vector3(Random.Range(0, mapWidth), 5, Random.Range(0, mapDepth)), Quaternion.identity));
+            obs.Add(Instantiate(obPrefab, new Vector3(Random.Range(mapWidth / 4, mapWidth*3/4), 6, Random.Range(mapDepth / 4, mapDepth * 3 / 4)), Quaternion.identity));
         }
     }
 }
