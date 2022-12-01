@@ -777,7 +777,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   directionalLightObj: {fileID: 410087039}
-  dayLength: 0.03
+  dayLength: 1
 --- !u!1 &410119360
 GameObject:
   m_ObjectHideFlags: 0
