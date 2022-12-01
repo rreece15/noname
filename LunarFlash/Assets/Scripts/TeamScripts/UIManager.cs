@@ -174,7 +174,7 @@ public class UIManager : MonoBehaviour
         GameOverWinCanvas.enabled = true;
         GameOverWinCanvas.gameObject.transform.GetChild(1).GetComponent<TMP_Text>().enabled = true;
         GameOverWinCanvas.gameObject.transform.GetChild(2).GetComponent<TMP_Text>().enabled = false;
-        Time.timeScale = 1;
+        Time.timeScale = 0;
     }
 
     void OpenGameWinMenu()
@@ -182,7 +182,7 @@ public class UIManager : MonoBehaviour
         GameOverWinCanvas.enabled = true;
         GameOverWinCanvas.gameObject.transform.GetChild(1).GetComponent<TMP_Text>().enabled = false;
         GameOverWinCanvas.gameObject.transform.GetChild(2).GetComponent<TMP_Text>().enabled = true;
-        Time.timeScale = 1;
+        Time.timeScale = 0;
     }
 
 

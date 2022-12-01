@@ -39,6 +39,8 @@ public class Player : MonoBehaviour
     [Header("SFXs")]
     public AudioClip inventoryFull;
     public AudioClip dashSound;
+    public AudioClip attacked;
+    public AudioClip healed;
     AudioSource playerAudioSource;
 
     private Vector3 playerCurrentPos;
@@ -152,7 +154,10 @@ public class Player : MonoBehaviour
     {
         playerHP -= enemyAttack;
 
-        if(playerHP <= 0) { playerHP = 0; }
+        playerAudioSource.clip = attacked;
+        playerAudioSource.Play();
+
+        if (playerHP <= 0) { playerHP = 0; }
         playerHP_text.text = playerHP.ToString();
         playerHP_bar.value = playerHP;
     }
@@ -161,8 +166,10 @@ public class Player : MonoBehaviour
     {
        
         playerHP += HPpotion;
+        playerAudioSource.clip = healed;
+        playerAudioSource.Play();
 
-        if(playerHP >= 100) { playerHP = 100; }
+        if (playerHP >= 100) { playerHP = 100; }
 
         playerHP_text.text = playerHP.ToString();
         playerHP_bar.value = playerHP;

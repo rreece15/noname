@@ -5,7 +5,8 @@ using UnityEngine;
 public class StateManager : MonoBehaviour
 {
     public State currentState;
-
+    //public AudioClip walking;
+    //public AudioClip attacking;
     void Update()
     {
         RunStateMachine();
