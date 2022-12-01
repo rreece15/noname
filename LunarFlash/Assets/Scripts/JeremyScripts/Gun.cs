@@ -37,6 +37,8 @@ public class Gun : MonoBehaviour
     public Camera fpsCam;
 
     LineRenderer laserLine;
+
+    public static bool isGunEnabled = true;
     // Start is called before the first frame update
     
     void Start()
@@ -47,6 +49,7 @@ public class Gun : MonoBehaviour
 
         currnent.text = currentAmmo.ToString();
         totalAmmo.text = maxAmmo.ToString();
+        isGunEnabled = true;
     }
 
     void Awake()
@@ -79,25 +82,27 @@ public class Gun : MonoBehaviour
             
 
         }*/
-
-        if (isReloading)
+        if (isGunEnabled)
         {
-            return;
-        }
+            if (isReloading)
+            {
+                return;
+            }
 
-        if(currentAmmo <= 0 || Input.GetKeyDown(KeyCode.R))
-        {
-            StartCoroutine(Reload());
-            currnent.text = maxAmmo.ToString();
-            return;
-        }
+            if (currentAmmo <= 0 || Input.GetKeyDown(KeyCode.R))
+            {
+                StartCoroutine(Reload());
+                currnent.text = maxAmmo.ToString();
+                return;
+            }
 
-        if (Input.GetButtonDown("Fire1"))
-        {
-            shootSound.Play();
-            muzzleFlash.Play();
-            Shoot();
-            currnent.text = currentAmmo.ToString();
+            if (Input.GetButtonDown("Fire1"))
+            {
+                shootSound.Play();
+                muzzleFlash.Play();
+                Shoot();
+                currnent.text = currentAmmo.ToString();
+            }
         }
     }
 
