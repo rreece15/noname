@@ -777,7 +777,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   directionalLightObj: {fileID: 410087039}
-  dayLength: 0.03
+  dayLength: 1
 --- !u!1 &410119360
 GameObject:
   m_ObjectHideFlags: 0
@@ -1447,6 +1447,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numEnemies: 1
   score: 0
+  scoreBoard: {fileID: 398884480}
   enemyHealth: 100
   EnemyPrefab: {fileID: 979458152}
   playerScript: {fileID: 4117155787550268137}
