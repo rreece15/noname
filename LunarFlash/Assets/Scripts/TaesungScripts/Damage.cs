@@ -33,8 +33,7 @@ public class Damage : MonoBehaviour
     IEnumerator Damaging()
     {
         attack.Play();
-        GameManager.Instance.playerScript.DecreasePlayerHP(5);
-        animator.SetTrigger("Attack_1");
+        GameManager.Instance.playerScript.DecreasePlayerHP(10);
         yield return new WaitForSeconds(1);
         damageReady = true;
         animator.SetTrigger("Walk_Cycle_1");

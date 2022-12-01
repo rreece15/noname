@@ -1385,6 +1385,7 @@ MonoBehaviour:
   potionItemInfo: {fileID: 11400000, guid: f259cc0c72d9df24bab1f7aee3b90759, type: 2}
   basicAmmo: {fileID: 11400000, guid: d75477cff1d641948a3a9dcb620dfae1, type: 2}
   upgradeAmmo: {fileID: 11400000, guid: b827a733be0204d40af97779e1d5287c, type: 2}
+  itemcollected: {fileID: 0}
 --- !u!82 &1012433212
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2824,6 +2825,16 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 330585545}
+    - target: {fileID: 6977971018211734877, guid: d0419d061e38be644a4a3a5ccc4c3369,
+        type: 3}
+      propertyPath: m_Value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977971018211734877, guid: d0419d061e38be644a4a3a5ccc4c3369,
+        type: 3}
+      propertyPath: m_WholeNumbers
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6977971019591548157, guid: d0419d061e38be644a4a3a5ccc4c3369,
         type: 3}
       propertyPath: m_AnchorMax.x
