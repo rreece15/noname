@@ -22,6 +22,10 @@ public class GameManager : MonoBehaviour
     public Player playerScript;
     public int mapWidth;
     public int mapDepth;
+
+    public GameObject ObjectPrefab;
+    List<GameObject> objects = new List<GameObject>();
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -53,9 +57,11 @@ public class GameManager : MonoBehaviour
             cleared = false;
             SpawnEnemy();
             StartCoroutine(waiter());
+            spawnObjects();
         }
         if (GameObject.FindGameObjectsWithTag("Timer")[0].GetComponent<DayTimer>().getDayTime() > 0.95 && !cleared)
         {
+            clearObjects();
             //clearEnemies();
             cleared = true;
             waveNum++;
@@ -87,7 +93,7 @@ public class GameManager : MonoBehaviour
     IEnumerator waiter()
     {
         waiting = true;
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
         waiting = false;
     }
 
@@ -104,7 +110,7 @@ public class GameManager : MonoBehaviour
                 Debug.Log(hit.point);
                 Vector3 v = new Vector3(nextX, hit.point.y + 2, nextZ);
                 Debug.DrawRay(new Vector3(nextX, 100, nextZ), Vector3.down, Color.white, 100f, false);
-                enemies.Add(Instantiate(EnemyPrefab, v, Quaternion.identity));
+                objects.Add(Instantiate(ObjectPrefab, v, Quaternion.identity));
             }
         }
     }
@@ -117,6 +123,34 @@ public class GameManager : MonoBehaviour
         }
         enemies.Clear();
     }
+
+    void spawnObjects()
+    {
+        int nextX = Random.Range(0, mapWidth);
+        int nextZ = Random.Range(0, mapDepth);
+        RaycastHit hit;
+
+        if (Physics.Raycast(new Ray(new Vector3(nextX, 100, nextZ), Vector3.down), out hit, Mathf.Infinity, -1))
+        {
+            if (hit.collider != null)
+            {
+                Debug.Log(hit.point);
+                Vector3 v = new Vector3(nextX, hit.point.y + 2, nextZ);
+                Debug.DrawRay(new Vector3(nextX, 100, nextZ), Vector3.down, Color.white, 100f, false);
+                enemies.Add(Instantiate(EnemyPrefab, v, Quaternion.identity));
+            }
+        }
+    }
+
+    public void clearObjects()
+    {
+        foreach(GameObject obj in objects)
+        {
+            Destroy(obj);
+        }
+        objects.Clear();
+    }
+    
 
     public float GetPlayerHPInfo()
     {
