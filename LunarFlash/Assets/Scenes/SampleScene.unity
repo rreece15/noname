@@ -777,7 +777,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   directionalLightObj: {fileID: 410087039}
-  dayLength: 1
+  dayLength: 0.03
 --- !u!1 &410119360
 GameObject:
   m_ObjectHideFlags: 0
@@ -2144,6 +2144,7 @@ MonoBehaviour:
   resolutionDropdown: {fileID: 590786086}
   volumeSlider: {fileID: 213185716}
   volumeText: {fileID: 395971191}
+  gmforUI: {fileID: 1012433208}
 --- !u!1 &1993709896
 GameObject:
   m_ObjectHideFlags: 0

@@ -29,6 +29,8 @@ public class UIManager : MonoBehaviour
     // Volume
     [SerializeField] private Slider volumeSlider;
     [SerializeField] private TMP_Text volumeText;
+    [Space]
+    public GameManager gmforUI;
     float volume;
 
     bool menuIsOpen;
@@ -37,6 +39,7 @@ public class UIManager : MonoBehaviour
     static public bool inventoryFullUIOFF = false;
     // score
     private int currentScore;
+   
 
     // Start is called before the first frame update
     void Start()
@@ -72,6 +75,8 @@ public class UIManager : MonoBehaviour
         {
             SetResolution(resolutionDropdown.value);
         });
+
+  
     }
 
     // Update is called once per frame
@@ -190,6 +195,7 @@ public class UIManager : MonoBehaviour
         GameOverWinCanvas.enabled = true;
         GameOverWinCanvas.gameObject.transform.GetChild(1).GetComponent<TMP_Text>().enabled = true;
         GameOverWinCanvas.gameObject.transform.GetChild(2).GetComponent<TMP_Text>().enabled = false;
+        GameOverWinCanvas.gameObject.transform.GetChild(6).GetComponent<TMP_Text>().text = gmforUI.GetFinalScore().ToString();
         Time.timeScale = 0;
     }
 
@@ -200,6 +206,7 @@ public class UIManager : MonoBehaviour
         GameOverWinCanvas.enabled = true;
         GameOverWinCanvas.gameObject.transform.GetChild(1).GetComponent<TMP_Text>().enabled = false;
         GameOverWinCanvas.gameObject.transform.GetChild(2).GetComponent<TMP_Text>().enabled = true;
+        GameOverWinCanvas.gameObject.transform.GetChild(6).GetComponent<TMP_Text>().text = gmforUI.GetFinalScore().ToString();
         Time.timeScale = 0;
     }
 
