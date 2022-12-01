@@ -9,6 +9,8 @@ public class randomSpawn : MonoBehaviour
     [SerializeField] private GameObject obPrefab;
     private List<GameObject> obs = new List<GameObject>();
 
+    public float mapWidth;
+    public float mapDepth;
     private void Awake()
     {
         
@@ -28,7 +30,7 @@ public class randomSpawn : MonoBehaviour
     {
         for(int i = 0; i < numToSpawn; i++)
         {
-            obs.Add(Instantiate(obPrefab, new Vector3(Random.Range(0, 1000), 5, Random.Range(0, 1000)), Quaternion.identity));
+            obs.Add(Instantiate(obPrefab, new Vector3(Random.Range(0, mapWidth), 5, Random.Range(0, mapDepth)), Quaternion.identity));
         }
     }
 }

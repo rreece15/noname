@@ -16,6 +16,9 @@ public class GameManager : MonoBehaviour
     AudioSource gmAudio;
     private bool waiting;
     public Player playerScript;
+
+    public int mapWidth;
+    public int mapDepth;
     // Start is called before the first frame update
     void Start()
     {
@@ -57,8 +60,8 @@ public class GameManager : MonoBehaviour
 
     void SpawnEnemy()
     {
-        int nextX = Random.Range(0, 1025);
-        int nextZ = Random.Range(0, 1025);
+        int nextX = Random.Range(0, mapWidth);
+        int nextZ = Random.Range(0, mapDepth);
         RaycastHit hit;
 
         if(Physics.Raycast(new Ray(new Vector3(nextX, 100, nextZ), Vector3.down), out hit, Mathf.Infinity, -1))

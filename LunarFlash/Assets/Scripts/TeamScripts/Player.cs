@@ -58,7 +58,7 @@ public class Player : MonoBehaviour
         defaultMovingSpeed = movingSpeed;
         isGameOver = false;
         isGameClear = false;
-        this.gameObject.transform.position = new Vector3(380f, 10, 586);
+        this.gameObject.transform.position = new Vector3(246f, 10, 250);
        
         playerController = this.gameObject.GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
