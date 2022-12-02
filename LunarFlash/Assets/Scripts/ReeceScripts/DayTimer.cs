@@ -8,17 +8,26 @@ public class DayTimer : MonoBehaviour
     private Light directionalLight;
     [SerializeField] private float dayLength;
     private bool daytime;
+    float nextVal;
     // Start is called before the first frame update
+
+    private void Awake()
+    {
+        directionalLight = directionalLightObj.GetComponent<Light>();
+       directionalLight.intensity = 0;
+    }
     void Start()
     {
         directionalLight = directionalLightObj.GetComponent<Light>();
         directionalLight.intensity = 0;
+        Debug.Log("DirectionalLight intensity is " + directionalLight.intensity);
+        nextVal = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        float nextVal = Mathf.Max((Mathf.Abs(Mathf.Sin(dayLength * Time.time))), (float)0.05);
+        nextVal =Mathf.Max((Mathf.Abs(Mathf.Sin(dayLength * Time.timeSinceLevelLoad))), (float)0.05);
         directionalLight.intensity = nextVal;
         if(nextVal > 0.5)
         {
@@ -32,7 +41,7 @@ public class DayTimer : MonoBehaviour
 
     public float getDayTime()
     {
-        return Mathf.Max((Mathf.Abs(Mathf.Sin(dayLength * Time.time))), (float)0.05);
+        return Mathf.Max((Mathf.Abs(Mathf.Sin(dayLength * Time.timeSinceLevelLoad))), (float)0.05);
     }
 
     public bool isDay()

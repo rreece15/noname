@@ -23,15 +23,48 @@ public class randomSpawn : MonoBehaviour
        // obs.Add(Instantiate(obPrefab, new Vector3(380, 4, 580), Quaternion.identity));// this is ONLY for inventory testing - will get deleted
        //// obs.Add(Instantiate(obPrefab, new Vector3(380, 4, 550), Quaternion.identity));// this is ONLY for inventory testing - will get deleted
         //obs.Add(Instantiate(obPrefab, new Vector3(380, 4, 570), Quaternion.identity));// this is ONLY for inventory testing - will get deleted
-        spawn();
+        spawn(0);
     }
 
-    public void spawn() //spawns randomly in a specific range from zero
+    public void spawn(int wave) //spawns randomly in a specific range from zero
     {
-        for(int i = 0; i < numToSpawn; i++)
+        if (wave == 0)
         {
-            obs.Add(Instantiate(obPrefab, new Vector3(Random.Range(mapWidth / 4, mapWidth*3/4), 6, Random.Range(mapDepth / 4, mapDepth * 3 / 4)), Quaternion.identity));
+            numToSpawn = 2;
+
+            for (int i = 0; i < numToSpawn; i++)
+            {
+                obs.Add(Instantiate(obPrefab, new Vector3(Random.Range(mapWidth / 4, mapWidth * 3 / 4), 5, Random.Range(mapDepth / 4, mapDepth * 3 / 4)), Quaternion.identity));
+            }
         }
+        else if(wave == 1)
+        {
+            numToSpawn = 3;
+
+            for (int i = 0; i < numToSpawn; i++)
+            {
+                obs.Add(Instantiate(obPrefab, new Vector3(Random.Range(mapWidth / 4, mapWidth * 3 / 4), 5, Random.Range(mapDepth / 4, mapDepth * 3 / 4)), Quaternion.identity));
+            }
+        }
+        else if (wave == 2)
+        {
+            numToSpawn = 5;
+
+            for (int i = 0; i < numToSpawn; i++)
+            {
+                obs.Add(Instantiate(obPrefab, new Vector3(Random.Range(mapWidth / 4, mapWidth * 3 / 4), 5, Random.Range(mapDepth / 4, mapDepth * 3 / 4)), Quaternion.identity));
+            }
+        }
+        else if (wave == 3)
+        {
+            numToSpawn = 7;
+
+            for (int i = 0; i < numToSpawn; i++)
+            {
+                obs.Add(Instantiate(obPrefab, new Vector3(Random.Range(mapWidth / 4, mapWidth * 3 / 4), 5, Random.Range(mapDepth / 4, mapDepth * 3 / 4)), Quaternion.identity));
+            }
+        }
+
     }
 }
 

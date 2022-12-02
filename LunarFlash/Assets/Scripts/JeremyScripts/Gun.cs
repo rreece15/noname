@@ -144,14 +144,14 @@ public class Gun : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, gunRange))
         {
-            Debug.Log(hit.transform.name);
+            //Debug.Log(hit.transform.name);
             //This is used for damaging enemy when detected by raycast
             // TakeDamage take = hit.transform.GetComponent<TakeDamage>();
             if (hit.transform.name.Contains("yon"))
            { TakeDamage take = hit.transform.parent.GetComponent<TakeDamage>();
                 if (take != null)
                 {
-                    Debug.Log("Enemy is under attack!");
+                    //Debug.Log("Enemy is under attack!");
                     take.hitDamage(damage);
                 } 
             }

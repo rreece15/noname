@@ -36,7 +36,8 @@ public class TakeDamage : MonoBehaviour
         //currentsScore += 100;
         //score.text = "Current Score: " + currentsScore.ToString();
         addScore.updateScore();
-        Destroy(gameObject);
+        addScore.RemoveEnemyFromEnemyList(gameObject);
+        Destroy(gameObject.transform.parent.gameObject);
     }
 
     IEnumerator Damaged()

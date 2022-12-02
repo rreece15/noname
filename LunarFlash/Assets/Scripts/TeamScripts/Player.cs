@@ -57,7 +57,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         
-        movingSpeed = 10;
+        movingSpeed = 5;
         defaultMovingSpeed = movingSpeed;
         isGameOver = false;
         isGameClear = false;

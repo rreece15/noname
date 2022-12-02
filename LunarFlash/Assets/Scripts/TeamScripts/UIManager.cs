@@ -31,6 +31,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TMP_Text volumeText;
     [Space]
     public GameManager gmforUI;
+   // public Light
     float volume;
 
     bool menuIsOpen;
@@ -191,6 +192,7 @@ public class UIManager : MonoBehaviour
 
     void OpenGameOverMenu()
     {
+        gmforUI.ResetLighIntentisy();
         Cursor.lockState = CursorLockMode.Confined;
         Gun.isGunEnabled = false;
         GameOverWinCanvas.enabled = true;
@@ -202,6 +204,7 @@ public class UIManager : MonoBehaviour
 
     void OpenGameWinMenu()
     {
+        gmforUI.ResetLighIntentisy();
         Cursor.lockState = CursorLockMode.Confined;
         Gun.isGunEnabled = false;
         GameOverWinCanvas.enabled = true;

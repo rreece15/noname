@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using System.Linq;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -212,7 +213,7 @@ public class InventoryManager : MonoBehaviour
             else
             {
                 isShortCutFull = true;
-                Debug.Log(shortCutItem[i] + " is : " + isShortCutFull);
+                //Debug.Log(shortCutItem[i] + " is : " + isShortCutFull);
             }
         }
 
@@ -257,11 +258,14 @@ public class InventoryManager : MonoBehaviour
         // shortCutItem = new GameObject[3];
         // wholeItem = new GameObject[15];
 
-        if (CheckShortCutIsFull() == true)
+        isInventoryLocked = false;
+
+        isShortCutFull = false;
+        for(int i=0; i <shortCutItem.Count(); i++)
         {
-            isInventoryLocked = true;
-            UIManager.inventoryFullUION = true;
+            shortCutItem[i].GetComponent<InventorySlot>().GetsEmptied();
         }
+        
     }
 
     // Update is called once per frame
