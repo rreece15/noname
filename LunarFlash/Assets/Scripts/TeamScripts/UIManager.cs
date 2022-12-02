@@ -131,7 +131,7 @@ public class UIManager : MonoBehaviour
         options.GetComponent<Canvas>().enabled = false;
         optionsOpen.GetComponent<Canvas>().enabled = true;
         playerCanvas.GetComponent<Canvas>().enabled = false;
-        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     void OpenWholeInventory()
@@ -165,7 +165,7 @@ public class UIManager : MonoBehaviour
 
     void SetResolution(int resIndex)
     {
-        Cursor.lockState = CursorLockMode.Confined;
+        //Cursor.lockState = CursorLockMode.Confined;
         Gun.isGunEnabled = false;
         Resolution res = resolutions[resIndex];
         Screen.SetResolution(res.width, res.height, Screen.fullScreen);
@@ -178,7 +178,7 @@ public class UIManager : MonoBehaviour
 
     void SetVolume(float newVolume)
     {
-        Cursor.lockState = CursorLockMode.Confined;
+        //Cursor.lockState = CursorLockMode.Confined;
         Gun.isGunEnabled = false;
         Debug.Log("mouseClick");
         volumeText.text = "Volume: " + newVolume.ToString("0.00");

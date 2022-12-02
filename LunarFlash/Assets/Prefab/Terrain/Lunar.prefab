@@ -91,9 +91,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6defc0ec90493604687833d0a936aa77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 1000
-  height: 1000
+  width: 100
+  height: 100
   variation: 5
   scale: 20
   xOffset: 50
   yOffset: 50
+  surface: {fileID: 0}
