@@ -57,7 +57,7 @@ public class UIManager : MonoBehaviour
 
         optionsOpen.GetComponent<Canvas>().enabled = false;
         
-       // closeOptions.onClick.AddListener(() => CloseOptions());
+        closeOptions.onClick.AddListener(() => CloseOptions());
 
         volumeSlider.onValueChanged.AddListener((v) => SetVolume(v));
 
@@ -180,6 +180,7 @@ public class UIManager : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Confined;
         Gun.isGunEnabled = false;
+        Debug.Log("mouseClick");
         volumeText.text = "Volume: " + newVolume.ToString("0.00");
         AudioListener.volume = newVolume;
         volume = newVolume;
