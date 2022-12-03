@@ -192,7 +192,7 @@ public class UIManager : MonoBehaviour
 
     void OpenGameOverMenu()
     {
-        gmforUI.ResetLighIntentisy();
+        //gmforUI.ResetLighIntentisy();
         Cursor.lockState = CursorLockMode.Confined;
         Gun.isGunEnabled = false;
         GameOverWinCanvas.enabled = true;
@@ -204,7 +204,7 @@ public class UIManager : MonoBehaviour
 
     void OpenGameWinMenu()
     {
-        gmforUI.ResetLighIntentisy();
+        //gmforUI.ResetLighIntentisy();
         Cursor.lockState = CursorLockMode.Confined;
         Gun.isGunEnabled = false;
         GameOverWinCanvas.enabled = true;

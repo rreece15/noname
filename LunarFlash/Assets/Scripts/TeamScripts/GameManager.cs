@@ -91,21 +91,30 @@ public class GameManager : MonoBehaviour
             StartCoroutine(waiter(waveNum));
            // SpawnObjects();
         }
-        if (GameObject.FindGameObjectsWithTag("Timer")[0].GetComponent<DayTimer>().getDayTime() > 0.95 && !cleared)
+        if (GameObject.FindGameObjectsWithTag("Timer")[0].GetComponent<DayTimer>().getDayTime() >0.95  && !cleared)
         {
             clearObjects();
             //clearEnemies();
             cleared = true;
-           
+
             //Debug.Log(waveNum);
             // show wave num
-            StartCoroutine(SetUpWaveNotification()); 
-            waveNum++;
+            if (waveNum < 3)
+            {
+                StartCoroutine(SetUpWaveNotification());
+                waveNum++; 
+                waveNotifOn = true;
+            }
+            else
+            {
+                clearEnemies();
+                Player.isGameClear = true;
+            }
             //GameObject.FindGameObjectsWithTag("Wave")[0].GetComponent<TMP_Text>().SetText("Wave " + waveNum + " Complete!");
           //  GameObject.FindGameObjectsWithTag("GameManager")[0].GetComponent<randomSpawn>().spawn(waveNum);
-            waveNotifOn = true;
+           
         }
-        else if (/*!*/cleared && waveNum /*>*/== 4)
+        else if (/*!*/cleared && waveNum /*>*/>= 4)
         {
             //Debug.Log("player win");
             clearEnemies();
@@ -131,7 +140,7 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator SetUpWaveNotification()
     {
-        waveNotif.SetText("Wave " + waveNum + " Complete!");
+        waveNotif.SetText("Wave " + waveNum + " is Over!");
 
         yield return new WaitForSeconds(3f);
 
@@ -162,18 +171,18 @@ public class GameManager : MonoBehaviour
     {
         waiting = true;
         if (waveNum == 1)
-        { yield return new WaitForSeconds(5); }
+        { yield return new WaitForSeconds(7); }
         else if (waveNum == 2)
-        { yield return new WaitForSeconds(3); }
+        { yield return new WaitForSeconds(5); }
         else if (waveNum == 3)
-        { yield return new WaitForSeconds(1); }
+        { yield return new WaitForSeconds(3); }
         waiting = false;
     }
 
     void SpawnEnemy()
     {
-        int nextX = Random.Range(mapWidth/5, mapWidth*4/5);//0, mapWidth);
-        int nextZ = Random.Range(mapDepth/5, mapDepth*4/5);//0, mapDepth);
+        int nextX = Random.Range(mapWidth/8, mapWidth*7/8);//0, mapWidth);
+        int nextZ = Random.Range(mapDepth/8, mapDepth*7/8);//0, mapDepth);
         RaycastHit hit;
 
         if(Physics.Raycast(new Ray(new Vector3(nextX, 100, nextZ), Vector3.down), out hit, Mathf.Infinity, -1))
@@ -239,5 +248,10 @@ public class GameManager : MonoBehaviour
     public float GetPlayerHPInfo()
     {
         return playerScript.GetPlayerHP();
+    }
+
+    public int GetWaveNum()
+    {
+        return waveNum;
     }
 }
